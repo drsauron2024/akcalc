@@ -1,0 +1,13 @@
+.venv/
+.tools/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.env
+data/raw/*
+!data/raw/wiki/
+!data/raw/wiki/*.html
+data/kb/*.db
+results/*
+!results/.gitkeep
+.streamlit/

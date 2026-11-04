@@ -1,0 +1,202 @@
+# Curated formula cards for Arknights CN damage/healing/attack-speed calculations.
+# Sources: Arknights Terra Wiki (wiki.gg) pages snapshotted under data/raw/wiki/.
+# Every card is cross-checked against src/akcalc/calculator.py by tests.
+version: "2026-11-04"
+formulas:
+  - id: physical_damage
+    name: 物理伤害
+    aliases: [物理伤害, 物伤, 物理攻击, physical damage, AD]
+    damage_type: physical
+    expression: "max(atk_final * atk_multiplier - max(def_value - def_ignore_flat, 0) * (1 - def_ignore_pct), 0.05 * atk_final) * hits"
+    variables:
+      - {symbol: atk_final, name: 最终攻击力, unit: 点, description: 所有攻击力增益结算后的攻击力, required: true}
+      - {symbol: atk_multiplier, name: 技能倍率, unit: 倍, description: 技能/天赋的攻击力倍率，乘算, required: false, min_value: 0}
+      - {symbol: def_value, name: 目标防御力, unit: 点, description: 敌人当前防御力, required: true, min_value: 0}
+      - {symbol: def_ignore_flat, name: 无视防御（固定）, unit: 点, description: 固定无视防御值, required: false, min_value: 0}
+      - {symbol: def_ignore_pct, name: 无视防御（比例）, unit: 小数, description: 0.5 表示 50%，按乘算叠加, required: false, min_value: 0, max_value: 1}
+      - {symbol: hits, name: 命中段数, unit: 段, description: 单次攻击的段数，保底逐段结算, required: false, min_value: 1}
+    assumptions:
+      - 伤害类型为物理，目标没有额外物理减伤。
+      - 有效防御力最低为 0。
+      - 5% 保底基于 Atk_final，而不是技能倍率后的攻击力。
+      - 多段伤害逐段结算 5% 保底，再求和。
+    notes: "Dmg_phys = Atk_final × Atk_x% − (Def − Ignore_flat) × ∏(1 − Ignore%)；最低 5% × Atk_final。"
+    citation:
+      source_id: wiki_gg_damage_physical
+      title: "Arknights Terra Wiki — Damage/Physical"
+      url: https://arknights.wiki.gg/wiki/Damage/Physical
+      section: Physical damage
+      retrieved_at: "2026-11-04"
+      quote: "Dmg_phys = (Atk_final × Atk_x%) − [(Def − Ignore_flat) × ∏(1 − Ignore%)]. The minimum value of Dmg_phys is 5% of Atk_final."
+    examples:
+      - 银灰三技能 M3：Atk_final=2139，对 DEF=500 的敌人单次物理伤害为 1639。
+      - 同上对 DEF=2100：max(39, 106.95)=106.95，显示为 107。
+
+  - id: arts_damage
+    name: 法术伤害
+    aliases: [法术伤害, 法伤, 法术攻击, arts damage, AP]
+    damage_type: arts
+    expression: "max(atk_final * atk_multiplier * (1 - max(res_value - res_ignore_flat, 0) * (1 - res_ignore_pct)), 0.05 * atk_final) * hits"
+    variables:
+      - {symbol: atk_final, name: 最终攻击力, unit: 点, description: 所有攻击力增益结算后的攻击力, required: true}
+      - {symbol: atk_multiplier, name: 技能倍率, unit: 倍, description: 技能/天赋的攻击力倍率，乘算, required: false, min_value: 0}
+      - {symbol: res_value, name: 目标法术抗性, unit: 小数, description: 0.3 表示 30 法抗；上限为 1, required: true, min_value: 0, max_value: 1}
+      - {symbol: res_ignore_flat, name: 无视法抗（固定）, unit: 小数, description: 固定无视法抗值, required: false, min_value: 0, max_value: 1}
+      - {symbol: res_ignore_pct, name: 无视法抗（比例）, unit: 小数, description: 0.5 表示 50%，按乘算叠加, required: false, min_value: 0, max_value: 1}
+      - {symbol: hits, name: 命中段数, unit: 段, description: 单次攻击的段数，保底逐段结算, required: false, min_value: 1}
+    assumptions:
+      - 伤害类型为法术，目标没有额外法术减伤。
+      - 有效法术抗性限制在 0 到 1 之间。
+      - 5% 保底基于 Atk_final，而不是技能倍率后的攻击力。
+      - 多段伤害逐段结算 5% 保底，再求和。
+    notes: "Dmg_arts = (Atk_final × Atk_x%) × [1 − (Res − Ignore_flat) × ∏(1 − Ignore%)]；最低 5% × Atk_final。"
+    citation:
+      source_id: wiki_gg_damage_arts
+      title: "Arknights Terra Wiki — Damage/Arts"
+      url: https://arknights.wiki.gg/wiki/Damage/Arts
+      section: Arts damage
+      retrieved_at: "2026-11-04"
+      quote: "Dmg_arts = (Atk_final × Atk_x%) × [1 − ((Res − Ignore_flat) × ∏(1 − Ignore%))]. The minimum value of Dmg_arts is 5% of Atk_final."
+    examples:
+      - 艾雅法拉三技能 M3：Atk_final=1483.5，对 RES=0.30 的敌人单次法术伤害为 1038.45，显示为 1038。
+
+  - id: true_damage
+    name: 真实伤害
+    aliases: [真实伤害, 真伤, true damage, pure damage]
+    damage_type: "true"
+    expression: "atk_final * atk_multiplier * hits"
+    variables:
+      - {symbol: atk_final, name: 最终攻击力, unit: 点, description: 所有攻击力增益结算后的攻击力, required: true}
+      - {symbol: atk_multiplier, name: 技能倍率, unit: 倍, description: 技能/天赋的攻击力倍率, required: false, min_value: 0}
+      - {symbol: hits, name: 命中段数, unit: 段, description: 单次攻击的段数, required: false, min_value: 1}
+    assumptions:
+      - 真实伤害不受 DEF/RES 影响。
+      - 只有不指定伤害类型的减伤才能作用于真实伤害。
+    notes: "真伤 = Atk_final × Atk_x% × 段数。"
+    citation:
+      source_id: wiki_gg_damage_true
+      title: "Arknights Terra Wiki — Damage/True"
+      url: https://arknights.wiki.gg/wiki/Damage/True
+      section: True damage
+      retrieved_at: "2026-11-04"
+      quote: "True damage ... is not reduced by DEF or RES and ignores the majority of damage mitigation effects."
+    examples:
+      - 1000 点真实伤害对 DEF=500、RES=0.5 的敌人仍为 1000。
+
+  - id: healing
+    name: 治疗量
+    aliases: [治疗量, 治疗, 奶量, healing, heal]
+    damage_type: healing
+    expression: "atk_final * heal_multiplier * (1 + healing_effect)"
+    variables:
+      - {symbol: atk_final, name: 最终攻击力, unit: 点, description: 医疗干员的最终攻击力, required: true}
+      - {symbol: heal_multiplier, name: 治疗倍率, unit: 倍, description: 技能治疗倍率, required: false, min_value: 0}
+      - {symbol: healing_effect, name: 治疗增益, unit: 小数, description: 0.2 表示 +20% 治疗量, required: false, min_value: -1}
+    assumptions:
+      - 治疗量以攻击力为基数，治疗增益按加法处理。
+      - 不考虑过量治疗、禁疗与目标生命上限。
+    notes: "治疗量 = Atk_final × 治疗倍率 × (1 + 治疗增益)。"
+    citation:
+      source_id: wiki_gg_damage
+      title: "Arknights Terra Wiki — Damage (Types)"
+      url: https://arknights.wiki.gg/wiki/Damage
+      section: Types
+      retrieved_at: "2026-11-04"
+      quote: "Technically HP recovery or healing is considered a damage type ... HP recovery, such as that of Medic Operators, is also determined by ATK."
+    examples:
+      - 攻击力 500、治疗倍率 1.0、治疗增益 20% 时，治疗量为 600。
+
+  - id: attack_interval
+    name: 攻击间隔
+    aliases: [攻击间隔, 攻速, ASPD, attack interval, 攻击速度]
+    damage_type: utility
+    expression: "max(atk_time_base + atk_time_flat, 0) * 100 / ((100 + aspd_flat) * (1 + aspd_pct))"
+    variables:
+      - {symbol: atk_time_base, name: 基础攻击间隔, unit: 秒, description: 干员面板攻击间隔, required: true, min_value: 0}
+      - {symbol: atk_time_flat, name: 直接攻击间隔修正, unit: 秒, description: 技能/天赋的直接间隔修正，可为负, required: false}
+      - {symbol: aspd_flat, name: ASPD 固定加成, unit: 点, description: ASPD +20 即 20；默认 ASPD 为 100, required: false, min_value: -80}
+      - {symbol: aspd_pct, name: ASPD 比例加成, unit: 小数, description: 0.1 表示 +10%，按乘算叠加, required: false, min_value: -0.8}
+    assumptions:
+      - 直接攻击间隔修正先结算，再应用 ASPD。
+      - ASPD 固定加成之间加算，比例加成之间乘算。
+      - 不考虑前摇、后摇与动画加速。
+    notes: "AtkSpeed = 100 / ((100 + ASPD_flat) × ∏(1 + ASPD_percent))；AtkInterval = AtkTime × AtkSpeed。"
+    citation:
+      source_id: wiki_gg_attribute_attack_interval
+      title: "Arknights Terra Wiki — Attack interval"
+      url: https://arknights.wiki.gg/wiki/Attribute/Attack_interval
+      section: Attack Interval calculation
+      retrieved_at: "2026-11-04"
+      quote: "AtkTime = (AtkTime_base + AtkTime_flat) × (1 + AtkTime_percent) × AtkTime_multiplicative; AtkSpeed = 100 / ((100 + ASPD_flat) × ∏(1 + ASPD_percent)); AtkInterval = AtkTime × AtkSpeed."
+    examples:
+      - 能天使三技能 M3：1.0 − 0.11 = 0.89 秒；再叠加 ASPD +20 时为 0.7417 秒。
+
+  - id: dps
+    name: 每秒伤害
+    aliases: [DPS, 每秒伤害, 秒伤, damage per second]
+    damage_type: utility
+    expression: "damage_per_hit / interval"
+    variables:
+      - {symbol: damage_per_hit, name: 单次伤害, unit: 点, description: 单次攻击造成的伤害, required: true, min_value: 0}
+      - {symbol: interval, name: 攻击间隔, unit: 秒, description: 实际攻击间隔, required: true, min_value: 0.001}
+    assumptions:
+      - 以单次伤害除以攻击间隔估算，不含技能前摇、目标切换与护盾。
+      - 多段伤害应先把各段合计为单次伤害。
+    notes: "DPS = 单次伤害 / 攻击间隔。"
+    citation:
+      source_id: wiki_gg_attribute_attack_interval
+      title: "Arknights Terra Wiki — Attack interval"
+      url: https://arknights.wiki.gg/wiki/Attribute/Attack_interval
+      section: Attack Interval calculation
+      retrieved_at: "2026-11-04"
+      quote: "AtkInterval = AtkTime × AtkSpeed."
+    examples:
+      - 单次 1970 点、攻击间隔 0.89 秒时，DPS ≈ 2213.48。
+
+  - id: final_damage
+    name: 最终伤害（脆弱/减伤）
+    aliases: [最终伤害, 脆弱, 减伤, fragile, damage reduction, 易伤]
+    damage_type: utility
+    expression: "base_damage * (1 + fragile) * (1 - damage_reduction)"
+    variables:
+      - {symbol: base_damage, name: 基础伤害, unit: 点, description: 防御/抗性结算后的伤害, required: true, min_value: 0}
+      - {symbol: fragile, name: 脆弱加成, unit: 小数, description: 0.3 表示受到伤害 +30%；同类只取最高值, required: false, min_value: 0}
+      - {symbol: damage_reduction, name: 减伤, unit: 小数, description: 0.3 表示受到伤害 −30%, required: false, min_value: 0, max_value: 0.999}
+    assumptions:
+      - 脆弱同类只取最高值，不叠加。
+      - 减伤按乘法叠加。
+      - 本卡不处理 DEF/RES，先算基础伤害再套用。
+    notes: "Dmg_final = Dmg_base × Dmg_amp × ∏(1 − Red)。"
+    citation:
+      source_id: wiki_gg_damage_physical
+      title: "Arknights Terra Wiki — Damage/Physical"
+      url: https://arknights.wiki.gg/wiki/Damage/Physical
+      section: Physical damage
+      retrieved_at: "2026-11-04"
+      quote: "Dmg_final = Dmg_phys × Dmg_amp × ∏Phys_amp × ∏(1 − Phys_red). Dmg_amp ... usually refer to Fragile, of which only the highest value of each type of fragile may applied."
+    examples:
+      - 基础 1000、脆弱 30%、减伤 30% 时，最终伤害为 910。
+
+  - id: atk_final
+    name: 最终攻击力
+    aliases: [最终攻击力, 攻击力加成, ATK, 攻击力提升]
+    damage_type: utility
+    expression: "(atk_base + atk_flat) * (1 + atk_pct) + atk_ex"
+    variables:
+      - {symbol: atk_base, name: 基础攻击力, unit: 点, description: 干员面板攻击力, required: true, min_value: 0}
+      - {symbol: atk_flat, name: 固定攻击力加成, unit: 点, description: 固定加攻, required: false}
+      - {symbol: atk_pct, name: 攻击力百分比加成, unit: 小数, description: 2.0 表示 +200%, required: false, min_value: -1}
+      - {symbol: atk_ex, name: 额外攻击力, unit: 点, description: 灵感/偷取等额外攻击力, required: false}
+    assumptions:
+      - ATK% 加成按加法合并，再乘基础攻击力。
+      - 该简化式适用于单一技能/同类型增益；跨天赋复杂叠加需按 wiki 另行校订。
+    notes: "Atk_final = (Atk_base + Atk_flat) × (1 + Atk%) + Atk_ex。"
+    citation:
+      source_id: wiki_gg_damage_physical
+      title: "Arknights Terra Wiki — Damage/Physical"
+      url: https://arknights.wiki.gg/wiki/Damage/Physical
+      section: Physical damage
+      retrieved_at: "2026-11-04"
+      quote: "Atk_final represents ATK once all ATK buffs and debuffs are applied."
+    examples:
+      - 银灰基础攻击力 713、三技能 +200% 时，Atk_final = 2139。

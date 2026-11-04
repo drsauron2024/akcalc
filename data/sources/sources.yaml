@@ -1,0 +1,65 @@
+# Source registry. Every FormulaCard / OperatorRecord points at one of these.
+version: "2026-11-04"
+sources:
+  - id: wiki_gg_damage_physical
+    title: "Arknights Terra Wiki — Damage/Physical"
+    url: https://arknights.wiki.gg/wiki/Damage/Physical
+    kind: wiki
+    language: en
+    retrieved_at: "2026-11-04"
+    snapshot: data/raw/wiki/wiki_gg_damage_Physical.html
+    attribution: "Arknights Terra Wiki (wiki.gg); used for course research with attribution."
+
+  - id: wiki_gg_damage_arts
+    title: "Arknights Terra Wiki — Damage/Arts"
+    url: https://arknights.wiki.gg/wiki/Damage/Arts
+    kind: wiki
+    language: en
+    retrieved_at: "2026-11-04"
+    snapshot: data/raw/wiki/wiki_gg_damage_Arts.html
+    attribution: "Arknights Terra Wiki (wiki.gg); used for course research with attribution."
+
+  - id: wiki_gg_damage_true
+    title: "Arknights Terra Wiki — Damage/True"
+    url: https://arknights.wiki.gg/wiki/Damage/True
+    kind: wiki
+    language: en
+    retrieved_at: "2026-11-04"
+    snapshot: data/raw/wiki/wiki_gg_damage_True.html
+    attribution: "Arknights Terra Wiki (wiki.gg); used for course research with attribution."
+
+  - id: wiki_gg_damage
+    title: "Arknights Terra Wiki — Damage (overview)"
+    url: https://arknights.wiki.gg/wiki/Damage
+    kind: wiki
+    language: en
+    retrieved_at: "2026-11-04"
+    snapshot: data/raw/wiki/wiki_gg_damage.html
+    attribution: "Arknights Terra Wiki (wiki.gg); used for course research with attribution."
+
+  - id: wiki_gg_attribute_attack_interval
+    title: "Arknights Terra Wiki — Attack interval"
+    url: https://arknights.wiki.gg/wiki/Attribute/Attack_interval
+    kind: wiki
+    language: en
+    retrieved_at: "2026-11-04"
+    snapshot: data/raw/wiki/wiki_gg_Attribute_Attack_interval.html
+    attribution: "Arknights Terra Wiki (wiki.gg); used for course research with attribution."
+
+  - id: wiki_gg_damage_reduction
+    title: "Arknights Terra Wiki — Damage Reduction"
+    url: https://arknights.wiki.gg/wiki/Damage_Reduction
+    kind: wiki
+    language: en
+    retrieved_at: "2026-11-04"
+    snapshot: data/raw/wiki/wiki_gg_Damage_Reduction.html
+    attribution: "Arknights Terra Wiki (wiki.gg); used for course research with attribution."
+
+  - id: gamedata_63c7cec73c38
+    title: "Kengxxiao/ArknightsGameData — CN game data"
+    url: https://github.com/Kengxxiao/ArknightsGameData/tree/63c7cec73c3858d0ae913f85cc89af3cef4d744f/zh_CN/gamedata/excel
+    kind: game_data
+    language: zh
+    retrieved_at: "2026-11-04"
+    snapshot: data/raw/gamedata/63c7cec73c38
+    attribution: "Community extraction of official Arknights data; used for course research. Arknights © Hypergryph."

@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html class="client-nojs view-dark theme-dark skin-theme-clientpref-night" lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<title>Damage - Arknights Terra Wiki</title>
+<script>(function(){var className="client-js view-dark theme-dark skin-theme-clientpref-night";var cookie=document.cookie.match(/(?:^|; )commons_enmwclientpreferences=([^;]+)/);if(cookie){cookie[1].split('%2C').forEach(function(pref){className=className.replace(new RegExp('(^| )'+pref.replace(/-clientpref-\w+$|[^\w-]+/g,'')+'-clientpref-\\w+( |$)'),'$1'+pref+'$2');});}document.documentElement.className=className;}());RLCONF={"wgBreakFrames":false,"wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgRequestId":"68cd2b1d16feda8ad58332a1","wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Damage","wgTitle":"Damage","wgCurRevisionId":770701,"wgRevisionId":770701,"wgArticleId":10717,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["Pages with navboxes","Mechanics"],"wgPageViewLanguage":"en","wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgRelevantPageName":"Damage","wgRelevantArticleId":10717,"wgIsProbablyEditable":false,"wgRelevantPageIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"wgPageFormsTargetName":null,"wgPageFormsAutocompleteValues":[],"wgPageFormsAutocompleteOnAllChars":false,"wgPageFormsFieldProperties":[],"wgPageFormsCargoFields":[],"wgPageFormsDependentFields":[],"wgPageFormsCalendarValues":[],"wgPageFormsCalendarParams":[],"wgPageFormsCalendarHTML":null,"wgPageFormsGridValues":[],"wgPageFormsGridParams":[],"wgPageFormsContLangYes":null,"wgPageFormsContLangNo":null,"wgPageFormsContLangMonths":[],"wgPageFormsHeightForMinimizingInstances":800,"wgPageFormsDelayReload":false,"wgPageFormsShowOnSelect":[],"wgPageFormsScriptPath":"/mw-1.43/extensions/PageForms","edgValues":[],"wgPageFormsEDSettings":null,"wgAmericanDates":false,"wgCargoDefaultQueryLimit":2000,"wgCargoMonthNamesShort":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"wgMediaViewerOnClick":true,"wgMediaViewerEnabledByDefault":true,"wgCiteReferencePreviewsActive":true,"wgPopupsFlags":0,"wgCheckUserClientHintsHeadersJsApi":["architecture","bitness","brands","fullVersionList","mobile","model","platform","platformVersion"]};
+RLSTATE={"ext.gadget.ranger":"ready","ext.globalCssJs.user.styles":"ready","site.styles":"ready","user.styles":"ready","ext.globalCssJs.user":"ready","user":"ready","user.options":"loading","ext.cite.styles":"ready","skins.vector.styles.legacy":"ready","wgg.skins.vector.styles.search":"ready","jquery.makeCollapsible.styles":"ready","ext.CookieWarning.styles":"ready","oojs-ui-core.styles":"ready","oojs-ui.styles.indicators":"ready","mediawiki.widgets.styles":"ready","oojs-ui-core.icons":"ready","ext.removeredlinks.styles":"ready","ext.usergroupbadges.styles":"ready","ext.globalui.styles":"ready"};RLPAGEMODULES=["ext.cite.ux-enhancements","site","mediawiki.page.ready","jquery.makeCollapsible","mediawiki.toc","skins.vector.legacy.js","ext.CookieWarning","ext.removeredlinks","ext.themes.switcher","ext.gadget.previewTab","mmv.bootstrap","ext.checkUser.clientHints","ext.popups","ext.globalui"];</script>
+<script>(RLQ=window.RLQ||[]).push(function(){mw.loader.impl(function(){return["user.options@12s5i",function($,jQuery,require,module){mw.user.tokens.set({"patrolToken":"+\\","watchToken":"+\\","csrfToken":"+\\"});
+}];});});</script>
+<link rel="stylesheet" href="/load.php?lang=en&amp;modules=ext.CookieWarning.styles%7Cext.cite.styles%7Cext.globalui.styles%7Cext.removeredlinks.styles%7Cext.usergroupbadges.styles%7Cjquery.makeCollapsible.styles%7Cmediawiki.widgets.styles%7Coojs-ui-core.icons%2Cstyles%7Coojs-ui.styles.indicators%7Cskins.vector.styles.legacy%7Cwgg.skins.vector.styles.search&amp;only=styles&amp;skin=vector">
+<script async="" src="/load.php?lang=en&amp;modules=startup&amp;only=scripts&amp;raw=1&amp;skin=vector"></script>
+<meta name="ResourceLoaderDynamicStyles" content="">
+<link rel="stylesheet" href="/load.php?lang=en&amp;modules=ext.gadget.ranger&amp;only=styles&amp;skin=vector">
+<link rel="stylesheet" href="/load.php?lang=en&amp;modules=site.styles&amp;only=styles&amp;skin=vector">
+<script async="" src="/load.php?lang=en&amp;skin=vector&amp;modules=ext.themes.apply&amp;only=scripts&amp;skin=vector&amp;raw=1"></script>
+<meta name="generator" content="MediaWiki 1.43.6">
+<meta name="robots" content="max-image-preview:standard">
+<meta name="format-detection" content="telephone=no">
+<meta name="description" content="This article explains the mechanics of damage calculation in Arknights.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, minimum-scale=0.25, maximum-scale=5.0">
+<style type="text/css">@font-face {font-family:'Nunito';font-style:normal;font-weight:400;src:url(/cf-fonts/v/nunito/5.2.7/latin-ext/wght/normal.woff2);unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:'Nunito';font-style:normal;font-weight:400;src:url(/cf-fonts/v/nunito/5.2.7/vietnamese/wght/normal.woff2);unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB;font-display:swap;}@font-face {font-family:'Nunito';font-style:normal;font-weight:400;src:url(/cf-fonts/v/nunito/5.2.7/cyrillic-ext/wght/normal.woff2);unicode-range:U+0460-052F,U+1C80-1C8A,U+20B4,U+2DE0-2DFF,U+A640-A69F,U+FE2E-FE2F;font-display:swap;}@font-face {font-family:'Nunito';font-style:normal;font-weight:400;src:url(/cf-fonts/v/nunito/5.2.7/cyrillic/wght/normal.woff2);unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;font-display:swap;}@font-face {font-family:'Nunito';font-style:normal;font-weight:400;src:url(/cf-fonts/v/nunito/5.2.7/latin/wght/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}</style>
+<link rel="apple-touch-icon" href="/images/4/4a/Site-favicon.ico">
+<link rel="icon" href="/images/Site-favicon.ico?3ee815">
+<link rel="shortcut icon" href="/images/Site-favicon.ico?3ee815">
+<link rel="search" type="application/opensearchdescription+xml" href="/rest.php/v1/search" title="Arknights Terra Wiki (en)">
+<link rel="EditURI" type="application/rsd+xml" href="https://arknights.wiki.gg/api.php?action=rsd">
+<link rel="canonical" href="https://arknights.wiki.gg/wiki/Damage">
+<link rel="license" href="https://creativecommons.org/licenses/by-sa/4.0">
+<link rel="alternate" type="application/atom+xml" title="Arknights Terra Wiki Atom feed" href="/wiki/Special:RecentChanges?feed=atom">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Damage">
+<meta property="og:site_name" content="Arknights Terra Wiki">
+<meta property="og:url" content="https://arknights.wiki.gg/wiki/Damage">
+<meta property="og:description" content="This article explains the mechanics of damage calculation in Arknights.">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","name":"Damage","headline":"Damage","mainEntityOfPage":"Damage","url":"https://arknights.wiki.gg/wiki/Damage","description":"This article explains the mechanics of damage calculation in Arknights.","datePublished":"2020-07-22T06:25:06Z","author":{"@type":"Organization","name":"Arknights Terra Wiki","url":"https://arknights.wiki.gg/","logo":{"@type":"ImageObject","url":"https://arknights.wiki.gg/images/Site-logo.png?c58958"}},"publisher":{"@type":"Organization","name":"Arknights Terra Wiki","url":"https://arknights.wiki.gg/","logo":{"@type":"ImageObject","url":"https://arknights.wiki.gg/images/Site-logo.png?c58958"}}}</script>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-P68LVFKN');</script>
+<!-- End Google Tag Manager -->
+</head>
+<body class="wgg-dom-version-1_43 skin-vector-legacy mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Damage rootpage-Damage skin-vector action-view skin--responsive"><header id="wgg-netbar" class="">
+	<div class="wgg-netbar__left">
+		<div class="wgg-netbar__logo">
+			<a href="/" aria-label="wiki.gg">
+				<img height=25 alt="wiki.gg logo" src="https://commons.wiki.gg/images/Network_header_logo.svg?feeba7">
+			</a>
+		</div>
+			<a
+			    class="wgg-netbar__deals-link"
+			    href="https://www.indiedeals.gg"
+			    target="_blank"
+			    rel="noopener"
+			    title="Indie game deals"
+			>
+			    <img class="wgg-netbar__deals-link__icon" src="https://commons.wiki.gg/images/Network_indiedeals_logo.png?f0e20f" alt="">
+			    <span class="wgg-netbar__deals-link__label">Indie game deals</span>
+			</a>
+	</div>
+
+	<nav class="wgg-netbar__user-links" aria-label="Personal tools">
+		<div id="p-personal" class="mw-portlet mw-portlet-personal"  >
+		    
+		    <ul>
+		            <li id="pt-createaccount" class="mw-list-item wgg-netbar__desktop-only"><a data-mw="interface" class=""  href="/wiki/Special:CreateAccount?returnto=Damage" title="You are encouraged to create an account and log in; however, it is not mandatory"><span>Create account</span></a></li>
+		            <li id="pt-login" class="mw-list-item wgg-netbar__desktop-only"><a data-mw="interface" class=""  href="/wiki/Special:UserLogin?returnto=Damage" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o"><span>Log in</span></a></li>
+		    </ul>
+		    
+		</div>
+
+		<div id="wgg-user-menu-overflow" class="wgg-netbar__dropdown wgg-netbar__mobile-only">
+			<input type="checkbox"
+				id="wgg-user-menu-overflow-checkbox"
+				role="button"
+				aria-haspopup="true"
+				aria-labelledby="wgg-user-menu-overflow-label"
+			>
+			<label
+				id="wgg-user-menu-overflow-label"
+		        for="wgg-user-menu-overflow-checkbox"
+				class="wgg-netbar__icon-button"
+			><span class="wgg-netbar-icon wgg-netbar-icon--overflow"></span><span>Toggle personal tools menu</span></label>
+
+			<div class="wgg-netbar__dropdown-content">
+				<div id="p-user-menu" class="mw-portlet mw-portlet-user-menu"  >
+				    
+				    <ul>
+				            <li id="pt-createaccount-overflow" class="mw-list-item wgg-netbar__mobile-only"><a data-mw="interface" class=""  href="/wiki/Special:CreateAccount?returnto=Damage" title="You are encouraged to create an account and log in; however, it is not mandatory"><span>Create account</span></a></li>
+				            <li id="pt-login-overflow" class="mw-list-item wgg-netbar__mobile-only"><a data-mw="interface" class=""  href="/wiki/Special:UserLogin?returnto=Damage" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o"><span>Log in</span></a></li>
+				    </ul>
+				    
+				</div>
+			</div>
+		</div>
+</nav>
+
+</header>
+
+<div id="mw-page-base" class="noprint"></div>
+<div id="mw-head-base" class="noprint"></div>
+<div class="content-wrapper">
+	<div id="mw-navigation">
+		<h2>Navigation menu</h2>
+		<div id="mw-head">
+			<div id="left-navigation">
+				
+<div id="p-namespaces" class="mw-portlet mw-portlet-namespaces vector-menu-tabs vector-menu-tabs-legacy vectorTabs vector-menu" aria-labelledby="p-namespaces-label"  >
+	<h3
+		id="p-namespaces-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Namespaces</span>
+	</h3>
+	<div class="vector-menu-content body">
+		
+		<ul class="vector-menu-content-list menu">
+			
+			<li id="ca-nstab-main" class="selected mw-list-item"><a href="/wiki/Damage" title="View the content page [c]" accesskey="c"><span>Page</span></a></li><li id="ca-talk" class="new mw-list-item"><a href="/wiki/Talk:Damage?action=edit&amp;redlink=1" rel="discussion" class="new" title="Discussion about the content page (page does not exist) [t]" accesskey="t"><span>Discussion</span></a></li>
+		</ul>
+		
+	</div>
+</div>
+
+				
+<div id="p-variants" class="mw-portlet mw-portlet-variants emptyPortlet vector-menu-dropdown vector-menu" aria-labelledby="p-variants-label"  >
+	<input type="checkbox"
+		id="p-variants-checkbox"
+		role="button"
+		aria-haspopup="true"
+		data-event-name="ui.dropdown-p-variants"
+		class="vector-menu-checkbox"
+		aria-labelledby="p-variants-label"
+	>
+	<label
+		id="p-variants-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">English</span>
+	</label>
+	<div class="vector-menu-content body">
+		
+		<ul class="vector-menu-content-list menu">
+			
+			
+		</ul>
+		
+	</div>
+</div>
+
+			</div>
+			<div id="right-navigation">
+				
+<div id="p-views" class="mw-portlet mw-portlet-views vector-menu-tabs vector-menu-tabs-legacy vectorTabs vector-menu" aria-labelledby="p-views-label"  >
+	<h3
+		id="p-views-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Views</span>
+	</h3>
+	<div class="vector-menu-content body">
+		
+		<ul class="vector-menu-content-list menu">
+			
+			<li id="ca-view" class="selected mw-list-item"><a href="/wiki/Damage"><span>Read</span></a></li><li id="ca-edit" class="mw-list-item"><a href="/wiki/Special:CreateAccount?warning=accountrequiredtoedit&amp;returnto=Damage&amp;returntoquery=action%3Dedit" title="Edit this page [e]" accesskey="e"><span>Sign up to edit</span></a></li><li id="ca-viewsource" class="mw-list-item"><a href="/wiki/Damage?action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e"><span>View source</span></a></li><li id="ca-history" class="mw-list-item"><a href="/wiki/Damage?action=history" title="Past revisions of this page [h]" accesskey="h"><span>View history</span></a></li>
+		</ul>
+		
+	</div>
+</div>
+
+				
+<div id="p-cactions" class="mw-portlet mw-portlet-cactions emptyPortlet vectorMenu vector-menu-dropdown vector-menu" aria-labelledby="p-cactions-label"  title="More options" >
+	<input type="checkbox"
+		id="p-cactions-checkbox"
+		role="button"
+		aria-haspopup="true"
+		data-event-name="ui.dropdown-p-cactions"
+		class="vector-menu-checkbox"
+		aria-labelledby="p-cactions-label"
+	>
+	<label
+		id="p-cactions-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">More</span>
+	</label>
+	<div class="vector-menu-content body">
+		
+		<ul class="vector-menu-content-list menu">
+			
+			
+		</ul>
+		
+	</div>
+</div>
+
+				
+<div id="p-search" role="search" class="vector-search-box-vue  vector-search-box-show-thumbnail vector-search-box-auto-expand-width vector-search-box">
+	<div class="vector-typeahead-search-container">
+		<div class="vector-typeahead-search-wrapper">
+			<div class="cdx-typeahead-search cdx-typeahead-search--show-thumbnail">
+				<form action="/wiki/Special:Search" id="searchform" class="vector-search-box-form cdx-typeahead-search__form">
+					<div id="simpleSearch"
+						class="vector-search-box-inner cdx-search-input cdx-search-input--has-end-button cdx-typeahead-search__input"
+						 data-search-loc="header-navigation">
+						<div class="cdx-search-input__input-wrapper">
+							<div class="cdx-text-input">
+								<input class="vector-search-box-input cdx-text-input__input mw-searchInput"
+									 type="search" name="search" placeholder="Search Arknights Terra Wiki" aria-label="Search Arknights Terra Wiki" autocapitalize="sentences" spellcheck="false" title="Search Arknights Terra Wiki [f]" accesskey="f" id="searchInput"
+									
+								>
+							</div>
+						</div>
+					<button class="cdx-button cdx-search-input__end-button">
+						Search
+					</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+			</div>
+		</div>
+		
+<div id="mw-panel">
+	<div id="p-logo" role="banner">
+		<a class="mw-wiki-logo" href="/"
+			title="Visit the main page"></a>
+	</div>
+	
+<div id="p-navigation" class="mw-portlet mw-portlet-navigation vector-menu-portal portal vector-menu" aria-labelledby="p-navigation-label"  >
+	<h3
+		id="p-navigation-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Navigation</span>
+	</h3>
+	<div class="vector-menu-content body">
+		
+		<ul class="vector-menu-content-list menu">
+			
+			<li id="n-mainpage-description" class="mw-list-item"><a href="/" title="Visit the main page [z]" accesskey="z"><span>Main page</span></a></li><li id="n-recentchanges" class="mw-list-item"><a href="/wiki/Special:RecentChanges" title="A list of recent changes in the wiki [r]" accesskey="r"><span>Recent changes</span></a></li><li id="n-randompage" class="mw-list-item"><a href="/wiki/Special:Random" title="Load a random page [x]" accesskey="x"><span>Random page</span></a></li><li id="n-About-the-wiki" class="mw-list-item"><a href="/wiki/Arknights_Terra_Wiki:About"><span>About the wiki</span></a></li><li id="n-help-mediawiki" class="mw-list-item"><a href="https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents"><span>Help about MediaWiki</span></a></li><li id="n-Wiki-Discord" class="mw-list-item"><a href="https://discord.gg/2eXU4KHYpB" rel="nofollow"><span>Wiki Discord</span></a></li>
+		</ul>
+		
+	</div>
+</div>
+
+	
+<div id="p-Arknights" class="mw-portlet mw-portlet-Arknights vector-menu-portal portal vector-menu" aria-labelledby="p-Arknights-label"  >
+	<h3
+		id="p-Arknights-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Arknights</span>
+	</h3>
+	<div class="vector-menu-content body">
+		
+		<ul class="vector-menu-content-list menu">
+			
+			<li id="n-Operators" class="mw-list-item"><a href="/wiki/Operator"><span>Operators</span></a></li><li id="n-Operations" class="mw-list-item"><a href="/wiki/Operation"><span>Operations</span></a></li><li id="n-Enemies" class="mw-list-item"><a href="/wiki/Enemy"><span>Enemies</span></a></li><li id="n-Events" class="mw-list-item"><a href="/wiki/Event"><span>Events</span></a></li><li id="n-Items" class="mw-list-item"><a href="/wiki/Item"><span>Items</span></a></li><li id="n-RIIC" class="mw-list-item"><a href="/wiki/RIIC"><span>RIIC</span></a></li><li id="n-Headhunting" class="mw-list-item"><a href="/wiki/Headhunting"><span>Headhunting</span></a></li><li id="n-Recruitment" class="mw-list-item"><a href="/wiki/Recruitment"><span>Recruitment</span></a></li>
+		</ul>
+		
+	</div>
+</div>
+
+<div id="p-Game_modes" class="mw-portlet mw-portlet-Game_modes vector-menu-portal portal vector-menu" aria-labelledby="p-Game_modes-label"  >
+	<h3
+		id="p-Game_modes-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Game modes</span>
+	</h3>
+	<div class="vector-menu-content body">
+		
+		<ul class="vector-menu-content-list menu">
+			
+			<li id="n-Contingency-Contract" class="mw-list-item"><a href="/wiki/Contingency_Contract"><span>Contingency Contract</span></a></li><li id="n-Integrated-Strategies" class="mw-list-item"><a href="/wiki/Integrated_Strategies"><span>Integrated Strategies</span></a></li><li id="n-Stationary-Security-Service" class="mw-list-item"><a href="/wiki/Stationary_Security_Service"><span>Stationary Security Service</span></a></li><li id="n-Trials-for-Navigator" class="mw-list-item"><a href="/wiki/Trials_for_Navigator"><span>Trials for Navigator</span></a></li><li id="n-Reclamation-Algorithm" class="mw-list-item"><a href="/wiki/Reclamation_Algorithm"><span>Reclamation Algorithm</span></a></li><li id="n-Icebreaker-Games" class="mw-list-item"><a href="/wiki/Icebreaker_Games"><span>Icebreaker Games</span></a></li><li id="n-Vector-Breakthrough" class="mw-list-item"><a href="/wiki/Vector_Breakthrough"><span>Vector Breakthrough</span></a></li><li id="n-Duel-Channel" class="mw-list-item"><a href="/wiki/Duel_Channel"><span>Duel Channel</span></a></li>
+		</ul>
+		
+	</div>
+</div>
+
+<div id="p-Miscellaneous" class="mw-portlet mw-portlet-Miscellaneous vector-menu-portal portal vector-menu" aria-labelledby="p-Miscellaneous-label"  >
+	<h3
+		id="p-Miscellaneous-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Miscellaneous</span>
+	</h3>
+	<div class="vector-menu-content body">
+		
+		<ul class="vector-menu-content-list menu">
+			
+			<li id="n-Outfits" class="mw-list-item"><a href="/wiki/Outfit"><span>Outfits</span></a></li><li id="n-Furniture" class="mw-list-item"><a href="/wiki/Furniture"><span>Furniture</span></a></li><li id="n-Character-voices" class="mw-list-item"><a href="/wiki/Character_voices"><span>Character voices</span></a></li><li id="n-Illustrators" class="mw-list-item"><a href="/wiki/Illustrators"><span>Illustrators</span></a></li><li id="n-Soundtracks" class="mw-list-item"><a href="/wiki/Soundtrack"><span>Soundtracks</span></a></li>
+		</ul>
+		
+	</div>
+</div>
+
+<div id="p-Guides" class="mw-portlet mw-portlet-Guides vector-menu-portal portal vector-menu" aria-labelledby="p-Guides-label"  >
+	<h3
+		id="p-Guides-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Guides</span>
+	</h3>
+	<div class="vector-menu-content body">
+		
+		<ul class="vector-menu-content-list menu">
+			
+			<li id="n-User-interface" class="mw-list-item"><a href="/wiki/User_interface"><span>User interface</span></a></li><li id="n-Team-building" class="mw-list-item"><a href="/wiki/Team_building"><span>Team building</span></a></li><li id="n-Advanced-strategies" class="mw-list-item"><a href="/wiki/Advanced_strategies"><span>Advanced strategies</span></a></li><li id="n-Missions" class="mw-list-item"><a href="/wiki/Mission"><span>Missions</span></a></li><li id="n-Path-to-Glory" class="mw-list-item"><a href="/wiki/Path_to_Glory"><span>Path to Glory</span></a></li><li id="n-Store" class="mw-list-item"><a href="/wiki/Store"><span>Store</span></a></li><li id="n-Headhunting" class="mw-list-item"><a href="/wiki/Headhunting"><span>Headhunting</span></a></li><li id="n-Recruitment" class="mw-list-item"><a href="/wiki/Recruitment"><span>Recruitment</span></a></li>
+		</ul>
+		
+	</div>
+</div>
+
+<div id="p-Lore" class="mw-portlet mw-portlet-Lore vector-menu-portal portal vector-menu" aria-labelledby="p-Lore-label"  >
+	<h3
+		id="p-Lore-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Lore</span>
+	</h3>
+	<div class="vector-menu-content body">
+		
+		<ul class="vector-menu-content-list menu">
+			
+			<li id="n-Terra" class="mw-list-item"><a href="/wiki/Terra"><span>Terra</span></a></li><li id="n-Characters" class="mw-list-item"><a href="/wiki/Character"><span>Characters</span></a></li><li id="n-Factions" class="mw-list-item"><a href="/wiki/Faction"><span>Factions</span></a></li><li id="n-Races" class="mw-list-item"><a href="/wiki/Race"><span>Races</span></a></li><li id="n-Originium" class="mw-list-item"><a href="/wiki/Originium"><span>Originium</span></a></li><li id="n-Stories" class="mw-list-item"><a href="/wiki/Story"><span>Stories</span></a></li><li id="n-Timeline" class="mw-list-item"><a href="/wiki/Arknights_Timeline"><span>Timeline</span></a></li><li id="n-Terra-Historicus" class="mw-list-item"><a href="/wiki/Terra_Historicus"><span>Terra Historicus</span></a></li>
+		</ul>
+		
+	</div>
+</div>
+
+<div id="p-Real-world" class="mw-portlet mw-portlet-Real-world vector-menu-portal portal vector-menu" aria-labelledby="p-Real-world-label"  >
+	<h3
+		id="p-Real-world-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Real-world</span>
+	</h3>
+	<div class="vector-menu-content body">
+		
+		<ul class="vector-menu-content-list menu">
+			
+			<li id="n-Hypergryph" class="mw-list-item"><a href="/wiki/Hypergryph"><span>Hypergryph</span></a></li><li id="n-Yostar" class="mw-list-item"><a href="/wiki/Yostar"><span>Yostar</span></a></li><li id="n-Ambience-Synesthesia" class="mw-list-item"><a href="/wiki/Ambience_Synesthesia"><span>Ambience Synesthesia</span></a></li>
+		</ul>
+		
+	</div>
+</div>
+
+<div id="p-Community" class="mw-portlet mw-portlet-Community vector-menu-portal portal vector-menu" aria-labelledby="p-Community-label"  >
+	<h3
+		id="p-Community-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Community</span>
+	</h3>
+	<div class="vector-menu-content body">
+		
+		<ul class="vector-menu-content-list menu">
+			
+			<li id="n-Administrators" class="mw-list-item"><a href="/wiki/Arknights_Terra_Wiki:Administrators"><span>Administrators</span></a></li><li id="n-Policies-and-guidelines" class="mw-list-item"><a href="/wiki/Arknights_Terra_Wiki:Policies_and_guidelines"><span>Policies and guidelines</span></a></li>
+		</ul>
+		
+	</div>
+</div>
+
+<div id="p-tb" class="mw-portlet mw-portlet-tb vector-menu-portal portal vector-menu" aria-labelledby="p-tb-label"  >
+	<h3
+		id="p-tb-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Tools</span>
+	</h3>
+	<div class="vector-menu-content body">
+		
+		<ul class="vector-menu-content-list menu">
+			
+			<li id="t-whatlinkshere" class="mw-list-item"><a href="/wiki/Special:WhatLinksHere/Damage" title="A list of all wiki pages that link here [j]" accesskey="j"><span>What links here</span></a></li><li id="t-recentchangeslinked" class="mw-list-item"><a href="/wiki/Special:RecentChangesLinked/Damage" rel="nofollow" title="Recent changes in pages linked from this page"><span>Related changes</span></a></li><li id="t-newpage" class="mw-list-item"><a href="/wiki/Special:NewPage" accesskey="]"><span>New page</span></a></li><li id="t-specialpages" class="mw-list-item"><a href="/wiki/Special:SpecialPages" title="A list of all special pages [q]" accesskey="q"><span>Special pages</span></a></li><li id="t-print" class="mw-list-item"><a href="javascript:print();" rel="alternate" title="Printable version of this page [p]" accesskey="p"><span>Printable version</span></a></li><li id="t-info" class="mw-list-item"><a href="/wiki/Damage?action=info" title="More information about this page"><span>Page information</span></a></li><li id="t-cargopagevalueslink" class="mw-list-item"><a href="/wiki/Damage?action=dbdata"><span>Database data</span></a></li>
+		</ul>
+		
+	</div>
+</div>
+
+	
+</div>
+
+	</div>
+	<div id="content" class="mw-body" role="main">
+		<aside id="wikigg-sl-header" data-mw="WggShowcaseLayout">
+        <div
+            class="wikigg-showcase__unit wikigg-showcase__reserved--lb"
+            data-wgg-unit-type="internal"
+        ></div>
+</aside>
+
+		<div class="content-body">
+			<main>
+				<a id="top"></a>
+				<div id="siteNotice"></div>
+				<div class="mw-indicators">
+				</div>
+				<h1 id="firstHeading" class="firstHeading mw-first-heading"><span class="mw-page-title-main">Damage</span></h1>
+				<div id="bodyContent" class="vector-body">
+					<div id="siteSub" class="noprint">From Arknights Terra Wiki</div>
+					<div id="contentSub"></div>
+					<div id="contentSub2"></div>
+					
+					<div id="jump-to-nav"></div>
+					<a class="mw-jump-link" href="#mw-head">Jump to navigation</a>
+					<a class="mw-jump-link" href="#searchInput">Jump to search</a>
+					<div id="mw-content-text" class="mw-body-content"><div class="mw-content-ltr mw-parser-output" lang="en" dir="ltr"><p>This article explains the mechanics of <b>damage</b> calculation in <i><a href="/wiki/Arknights" title="Arknights">Arknights</a></i>.
+</p>
+<div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Overview"><span class="tocnumber">1</span> <span class="toctext">Overview</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#Types"><span class="tocnumber">1.1</span> <span class="toctext">Types</span></a></li>
+<li class="toclevel-2 tocsection-3"><a href="#Nature"><span class="tocnumber">1.2</span> <span class="toctext">Nature</span></a></li>
+<li class="toclevel-2 tocsection-4"><a href="#Sources"><span class="tocnumber">1.3</span> <span class="toctext">Sources</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#Lethal"><span class="tocnumber">1.4</span> <span class="toctext">Lethal</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-6"><a href="#Tips"><span class="tocnumber">2</span> <span class="toctext">Tips</span></a></li>
+<li class="toclevel-1 tocsection-7"><a href="#Visible_Damage"><span class="tocnumber">3</span> <span class="toctext">Visible Damage</span></a></li>
+<li class="toclevel-1 tocsection-8"><a href="#References"><span class="tocnumber">4</span> <span class="toctext">References</span></a></li>
+<li class="toclevel-1"><a href="#Navigation"><span class="tocnumber">5</span> <span class="toctext">Navigation</span></a></li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="Overview">Overview</span></h2>
+<p>All damage is calculated to the exact value, including decimals. When damage is displayed in-game (see Trivia) or in a menu, the value is rounded to the closest integer (e.g. 99.9 is shown as 100 and 99.4 is shown as 99).
+</p><p>In order to calculate DMG properly, there first needs to be an ATK calculation created by using the following formula:
+</p>
+<dl><dd><code>Atk = [FLOOR(Atk<sub>base</sub> &#215; Atk<sub>stage</sub>) &#215; (1 &#43; Atk<sub>+%</sub>)] &#43; Atk<sub>ex</sub></code></dd></dl>
+<dl><dd><code>Atk<sub>final</sub> = FLOOR[Atk &#215; &#8719;(1 - Atk<sub>-%</sub>)]</code></dd></dl>
+<p>Where:
+</p>
+<ul><li><code>Atk</code> represents the final ATK.</li>
+<li><code>Atk<sub>base</sub></code> represents the original ATK before any skill, talent, buff, or debuff takes effect.</li>
+<li><code>Atk<sub>stage</sub></code> represents the ATK percentage increase caused by stage modifiers such as a <a href="/wiki/Contingency_Contract" title="Contingency Contract">Contingency Contract</a>'s risk levels, Challenge Mode conditions in regular stages, etc.</li>
+<li><code>Atk<sub>+%</sub></code> represents the sum of all ATK <a href="/wiki/Buff" title="Buff">buffs</a> (including <a href="/wiki/Vigor" title="Vigor">Vigor</a>), stacking additively.</li>
+<li><code>Atk<sub>ex</sub></code> represents the sum of all ATK increased/decreased by <a href="/wiki/Inspiration" title="Inspiration">Inspiration</a> and/or <a href="/wiki/Steal" title="Steal">Steal</a>.</li>
+<li><code>Atk<sub>final</sub></code> represents the total amount of ATK after all buff/debuff calculations, before ATK multiplier from skills and/or talents take effect.</li>
+<li><code>Atk<sub>-%</sub></code> represents ATK decreased by <a href="/wiki/Debuff" title="Debuff">Debuff</a> effects, which stack multiplicatively.</li>
+<li><code>FLOOR</code> represents the action of rounding down the value to the greatest integer with less value than the current value.</li>
+<li><code>&#8719;</code>, also known as <i>product</i>, represents an action of multiplying all values together.</li></ul>
+<p>To make a DMG calculation, each of DMG type (Physical, Arts, True, and Elemental) uses their own separate formula and have their own separate interaction with the target's defensive stats (DEF, RES, and E-RES). Regardless of the type, the final amount of damage dealt will always be at least 5% of the attacker's ATK before independent percentage-based modifiers are factored in.
+</p>
+<h3><span class="mw-headline" id="Types">Types</span></h3>
+<ul><li><a href="/wiki/Damage/Physical" title="Damage/Physical">Physical damage</a></li>
+<li><a href="/wiki/Damage/Arts" title="Damage/Arts">Arts damage</a></li>
+<li><a href="/wiki/Damage/True" title="Damage/True">True damage</a></li>
+<li><a href="/wiki/Damage/Elemental" title="Damage/Elemental">Elemental damage</a></li></ul>
+<p>Technically HP recovery or healing is considered a damage type, but is not listed here due to its simplicity. It is worth noting however, that the healing "damage type" encompasses any form of HP restoration which shows the value as green numbers above the unit, such as those of <a href="/wiki/Medic" title="Medic">Medics</a>, and cannot be "inflicted" on targets with full HP.
+</p>
+<h3><span class="mw-headline" id="Nature">Nature</span></h3>
+<p>Damage is also divided by nature.
+</p>
+<table class="mrfz-wtable" width="80%" border="1" cellpadding="5" style="font-size:12px;">
+<tbody><tr>
+<th width="15%">Nature
+</th>
+<th>Information
+</th></tr>
+<tr>
+<td style="text-align:center;"><b>Normal</b>
+</td>
+<td>The basic nature of damage, which also applies to damage dealt by skills that modify the properties of normal attacks.
+</td></tr>
+<tr>
+<td style="text-align:center;"><b>Splash</b>
+</td>
+<td>Damage that can affect targets other than the primary/main target.<div style="margin-top:5px;"><b>Examples</b>: <a href="/wiki/Artilleryman_Sniper" class="mw-redirect" title="Artilleryman Sniper">Artilleryman Snipers</a>, <a href="/wiki/Splash_Caster" class="mw-redirect" title="Splash Caster">Splash Casters</a></div>
+</td></tr>
+<tr>
+<td style="text-align:center;"><b>Continuous</b>
+</td>
+<td>Also known as <b>damage-over-time</b> (<b>DOT</b>), damage that is periodically inflicted through a continuous effect.<div style="margin-top:5px;"><b>Examples</b>: <a href="/wiki/Blue_Poison" title="Blue Poison">Blue Poison</a>'s Neurotoxin, <a href="/wiki/Thorns" title="Thorns">Thorns</a>' Nerve Corrosion</div>
+</td></tr></tbody></table>
+<p>Note that the exact nature of damage dealt may not be intuitive, and testing may be required to identify the actual nature; for example the second and third hit of <a href="/wiki/Poz%C3%ABmka" title="Pozëmka">Pozëmka</a>'s Précis is treated as continuous damage in the game's code, and is thus affected by <a href="/wiki/Tin_Man" title="Tin Man">Tin Man</a>'s Shriveled Soul talent.<sup id="cite&#95;ref-1" class="reference"><a href="#cite_note-1"><span class="cite-bracket">&#91;</span>1<span class="cite-bracket">&#93;</span></a></sup>
+</p>
+<h3><span class="mw-headline" id="Sources">Sources</span></h3>
+<p>Damage is also divided by the source that inflicted it.
+</p>
+<table class="mrfz-wtable" width="80%" border="1" cellpadding="5" style="font-size:12px;">
+<tbody><tr>
+<th width="20%">Source
+</th>
+<th>Information
+</th></tr>
+<tr>
+<td style="text-align:center;"><b>Additional</b>
+</td>
+<td>All damage added to the unit's normal attacks. The additional damage is usually inflicted before the attack hits.<div style="margin-top:5px;"><b>Examples</b>: <a href="/wiki/Ceobe" title="Ceobe">Ceobe</a>'s Thresher, <a href="/wiki/Mech-Accord_Caster" class="mw-redirect" title="Mech-Accord Caster">Mech-Accord Caster</a>'s Drone</div>
+</td></tr>
+<tr>
+<td style="text-align:center;"><b>Skill</b>
+</td>
+<td>All damage dealt through the unit's skills, including its associated effects. This also includes effects provided by a unit that can be inflicted by others.<div style="margin-top:5px;"><b>Examples</b>: <a href="/wiki/Archetto" title="Archetto">Archetto</a>'s Pursuing Arrows, <a href="/wiki/Sesa" title="Sesa">Sesa</a>'s Delayed Concussive Parts</div>
+</td></tr>
+<tr>
+<td style="text-align:center;"><b>Independent</b>
+</td>
+<td>All damage that is not tied to the unit which inflicts them, thus units defeated through independent damage will not be considered defeated by the source.<div style="margin-top:5px;"><b>Examples</b>: <a href="/wiki/Blue_Poison" title="Blue Poison">Blue Poison</a>'s Neurotoxin, <a href="/wiki/Ethan" title="Ethan">Ethan</a>'s Fancy Maneuvers, <a href="/wiki/W" title="W">W</a>'s D12</div>
+</td></tr>
+<tr>
+<td style="text-align:center;"><b>Lethal</b>
+</td>
+<td>See the Lethal section for more information.
+</td></tr>
+<tr>
+<td style="text-align:center;"><b>Environmental</b>
+</td>
+<td>See <a href="/wiki/Environmental_effect" title="Environmental effect">Environmental effect</a> for more information.
+</td></tr></tbody></table>
+<h3><span class="mw-headline" id="Lethal">Lethal</span></h3>
+<p><b>Lethal</b> or <b>fatal</b> damage is defined as any damage that exceeds the target's current HP, or in other words, overkill that would reduce the target's HP to 0 and keep going. Lethal damage will trigger certain effects depending on the calculation, which will be explained below; for instance, a <a href="/wiki/Dreadnought_Guard" class="mw-redirect" title="Dreadnought Guard">Dreadnought Guards</a>' DRE-Y <a href="/wiki/Operator_Module" class="mw-redirect" title="Operator Module">Operator Module</a> will reduce the fatal damage they receive to 0 and fully restores their HP once per deployment.
+</p><p>Physical and True damage dealt will count as fatal if the value is equal to or greater than the target's current HP, while Arts and Elemental damage will only count as fatal if the value is <i>greater</i> than the target's current HP. Therefore, it is possible for a unit to survive with 0 HP when they take Arts or Elemental damage <i>exactly</i> equal to their current HP.
+</p><p>The following are possible lethal damage calculations:
+</p>
+<table class="mrfz-wtable" width="80%" border="1" cellpadding="5" style="font-size:12px;">
+<tbody><tr>
+<th width="25%">Calculation
+</th>
+<th>Information
+</th></tr>
+<tr>
+<td style="text-align:center;"><code>OnTakeDamage</code>
+</td>
+<td>If incoming damage exceeds current HP, even if non-lethal, the damage becomes lethal.<div style="margin-top:5px;"><b>Example</b>: <a href="/wiki/Horn" title="Horn">Horn</a>'s Bloodbath</div>
+</td></tr>
+<tr>
+<td style="text-align:center;"><code>DoApplyModifier</code>
+</td>
+<td>If incoming damage is non-lethal, it will leave the target with at least 1 HP, otherwise the damage becomes lethal.<div style="margin-top:5px;"><b>Example</b>: Hemopoetic Inhibition</div>
+</td></tr>
+<tr>
+<td style="text-align:center;"><code>SetHpInternal</code>
+</td>
+<td>If the difference between the incoming damage and the target's current HP is 0 or lower, the damage becomes non-lethal and will never reduce the target's HP to below 1.<div style="margin-top:5px;"><b>Examples</b>: <a href="/wiki/Surtr" title="Surtr">Surtr</a>'s Remnant Ash, <a href="/wiki/Silence_the_Paradigmatic" title="Silence the Paradigmatic">Silence the Paradigmatic</a>'s Dreadnought Protocol</div>
+</td></tr></tbody></table>
+<h2><span class="mw-headline" id="Tips">Tips</span></h2>
+<p>As a general rule, enemies with high DEF usually have low RES and vice-versa, but certain elite enemies and most bosses have identical levels of DEF and RES. Against such enemies, the following should be used:
+</p>
+<ul><li>Sources of True damage and ways to ignore DEF/RES.</li>
+<li>Extremely high Arts damage (at least 1000 in a single hit). For instance, when an Operator with 500 ATK hits enemies with an A rating on their DEF and RES (~800 and ~50, respectively), the enemy will take only ~25 physical damage but takes ~250 Arts damage (10 times the physical damage they would have taken).
+<ul><li>Conversely, if the Operator deals high enough physical damage, for example 1200, the enemy would take 400 physical damage, making it more effective than Arts at extremely high levels. However, such Operators are few and far in between, leaving Arts damage as the most reliable option.</li>
+<li>In general, physical damage has a higher damage ceiling, while Arts damage has a higher damage floor.</li></ul></li>
+<li>DEF and/or RES debuffs.</li>
+<li>Damage amplification (only if the initial hit dealt a non-negligible amount of damage).</li>
+<li>Elemental damage (not to be confused with Elemental Injury) are able to bypass an enemy's defensive stats and damage reduction when dealing damage during Elemental Burst using each operator's specific conditioning.</li></ul>
+<h2><span class="mw-headline" id="Visible_Damage">Visible Damage</span></h2>
+<ul><li>If the final damage (after factoring in <a href="/wiki/Skill" title="Skill">skill</a>, <a href="/wiki/Talent" title="Talent">talents</a>, and other effects) dealt by an attack is at least 50% higher than the original damage (i.e. if only visible ATK and DEF/RES were used for the calculation), the damage dealt will be displayed as a red (blue if the damage dealt is absorbed by <a href="/wiki/Barrier" title="Barrier">Barrier</a>) number above the target, similar to "critical attacks" in other games. This includes but is not limited to the following scenarios:
+<ul><li>On-hit ATK multipliers.</li>
+<li>Damage amplification, such as <a href="/wiki/Fragile" title="Fragile">Fragile</a>.</li>
+<li>Abilities that increase the 5% minimum damage threshold (like <a href="/wiki/Projekt_Red" title="Projekt Red">Projekt Red</a>'s Chill or <a href="/wiki/Aciddrop" title="Aciddrop">Aciddrop</a>'s Slideshot Style).</li>
+<li>Attacks that ignore a certain amount of DEF or RES on hit.</li>
+<li>Attacks dealing <a href="/wiki/Weakness_Damage" title="Weakness Damage">Weakness Damage</a> which changed their original damage type.</li>
+<li>Attacks that hit an invulnerable target (such as an attack fired at a target that was put to <a href="/wiki/Sleep" title="Sleep">Sleep</a> before it hit) will appear as dealing 0 damage.</li></ul></li>
+<li>The displayed damage number is subject to rounding (e.g. 99.5 damage will be display as 100, and 99.4 damage will be display as 99), but only visually. The damage inflicted to the target will still use the raw value and is not subject to rounding.</li>
+<li>The critical damage indicator is capped at 10 digits (i.e. 9,999,999,999), although this normally cannot be achieved in gameplay.
+<ul><li>If the damage exceeds 7 digits, the damage number will be split into two rows with up to 5 digits each. Prior to an unspecified update, one way to see this was by using <a href="/wiki/Civilight_Eterna_(Collectible)" title="Civilight Eterna (Collectible)">"Civilight Eterna"</a> to increase the damage of <a href="/wiki/Logos" title="Logos">Logos</a>'s <span style="display:inline-block;"><img alt="Skill-Logos1.png" src="/images/thumb/Skill-Logos1.png/22px-Skill-Logos1.png?a0abc5" decoding="async" loading="lazy" width="22" height="22" class="nopageimage" srcset="/images/thumb/Skill-Logos1.png/33px-Skill-Logos1.png?a0abc5 1.5x, /images/thumb/Skill-Logos1.png/44px-Skill-Logos1.png?a0abc5 2x" data-file-width="128" data-file-height="128" />&#32;Perish</span> (which executes enemies below the threshold by dealing 9,999,999 True damage to them) by 150%, dealing a visible 24,999,998 damage that is split into two rows (24999 and 998).</li></ul></li></ul>
+<h2><span class="mw-headline" id="References">References</span></h2>
+<table border="0" cellpadding="5" cellspacing="0" style="min-width:50%; max-width:100%;"><tbody><tr><td style="background:transparent;"><div class="reflist" style="overflow:auto; height:auto; border:1px solid var(--theme-border-color); max-height:200px; background:transparent; padding:5px;"><div class="mw-references-wrap"><ol class="references">
+<li id="cite&#95;note-1"><span class="mw-cite-backlink"><a href="#cite_ref-1">↑</a></span> <span class="reference-text"><a rel="nofollow" class="external text" href="https://youtu.be/j1gM1VDtESI">Tin Man + Nymph combo (Unexpected things buffed by Tin Man’s DoT talent)</a>, 0:50</span>
+</li>
+</ol></div></div></td></tr></tbody></table>
+<h2 style="clear:both;"><span class="mw-headline" id="Navigation">Navigation</span></h2><div role="navigation" aria-label="Navbox" class="ranger-navbox navigation-not-searchable mw-collapsible mw-collapsed"><div class="ranger-title"><div class="mw-collapsible-toggle-placeholder"></div><span class="ranger-meta"><span class="nv nv-view"><a href="/wiki/Template:Mechanics" title="Template:Mechanics"><span title="View or edit this template">View or edit this template</span></a></span></span><div class="ranger-title-text"><i>Arknights</i> mechanics</div></div><div class="ranger-section mw-collapsible-content"><div class="ranger-section-body mw-collapsible-content" style="--count:11"><div class="ranger-row"><div class="ranger-group level-0"><div class="ranger-wrap">Gameplay</div></div><div class="ranger-listbox"><div class="ranger-sublist level-0"><div class="ranger-section mw-collapsible-content"><div class="ranger-section-body mw-collapsible-content" style="--count:2"><div class="ranger-row empty-group"><div class="ranger-listbox"><div class="ranger-wrap ranger-odd hlist"><div class="ranger-list">
+<ul><li><a href="/wiki/Aggression" title="Aggression">Aggression</a></li>
+<li><a href="/wiki/Dodge" title="Dodge">Dodge</a></li>
+<li><a href="/wiki/Deployment_Point" title="Deployment Point">Deployment Point</a></li>
+<li><a href="/wiki/Environmental_effect" title="Environmental effect">Environmental effect</a></li>
+<li><a href="/wiki/Life_Point" title="Life Point">Life Point</a></li>
+<li><a href="/wiki/Resist" title="Resist">Resist</a></li>
+<li><a href="/wiki/Skill_Point" title="Skill Point">Skill Point</a></li>
+<li><a href="/wiki/Shift" title="Shift">Shift</a></li>
+<li><a href="/wiki/Vision" title="Vision">Vision</a></li></ul>
+</div></div></div></div><div class="ranger-row"><div class="ranger-group level-1 ranger-subgroup"><div class="ranger-wrap">Operation</div></div><div class="ranger-listbox"><div class="ranger-wrap ranger-even hlist"><div class="ranger-list">
+<ul><li><a href="/wiki/Active_Originium_Storm" title="Active Originium Storm">Active Originium Storm</a></li>
+<li><a href="/wiki/Beacon" title="Beacon">Beacon</a></li>
+<li><a href="/wiki/Vengeful_Mafioso" title="Vengeful Mafioso">Blood Ledger</a></li>
+<li><a href="/wiki/Crystal" title="Crystal">Crystal</a></li>
+<li><a href="/wiki/Favor" title="Favor">Favor</a></li>
+<li><a href="/wiki/Blizzard" title="Blizzard">Frigid</a></li>
+<li><a href="/wiki/Gravity" title="Gravity">Gravity</a> (<a href="/wiki/Planetary_Debris" title="Planetary Debris">Planetary Debris</a>)</li>
+<li><a href="/wiki/Tide_Controller" title="Tide Controller">High Tide</a></li>
+<li><a href="/wiki/Hui_and_Ming" title="Hui and Ming">Hui and Ming</a></li>
+<li><a href="/wiki/Intrusive_Call" title="Intrusive Call">Intrusive Call</a></li>
+<li><a href="/wiki/Londinium_Secondary_Defense_Artillery" title="Londinium Secondary Defense Artillery">Londinium Secondary Defense Artillery</a></li>
+<li><a href="/wiki/Moonlight" title="Moonlight">Moonlight</a></li>
+<li><a href="/wiki/EP14_Mechanics_Controller" title="EP14 Mechanics Controller">Originium Pollution</a></li>
+<li><a href="/wiki/Poison_Haze" title="Poison Haze">Poison Haze</a></li>
+<li><a href="/wiki/Realigned_Flux" title="Realigned Flux">Realigned Flux</a></li>
+<li><a href="/wiki/Sandstorm" title="Sandstorm">Sandstorm</a></li>
+<li><a href="/wiki/Blizzard" title="Blizzard">Snowfall</a></li>
+<li><a href="/wiki/Steam" title="Steam">Steam</a></li>
+<li><a href="/wiki/Variation" title="Variation">Variation</a></li>
+<li><a href="/wiki/Toxic_Pollution" title="Toxic Pollution">Toxic Pollution</a></li>
+<li><a href="/wiki/Visibility" title="Visibility">Visibility</a></li></ul>
+</div></div></div></div></div></div></div></div></div><div class="ranger-row"><div class="ranger-group level-0"><div class="ranger-wrap"><a href="/wiki/Attribute" title="Attribute">Attribute</a></div></div><div class="ranger-listbox"><div class="ranger-sublist level-0"><div class="ranger-section mw-collapsible-content"><div class="ranger-section-body mw-collapsible-content" style="--count:3"><div class="ranger-row empty-group"><div class="ranger-listbox"><div class="ranger-wrap ranger-odd hlist"><div class="ranger-list">
+<ul><li><a href="/wiki/Attribute/HP" title="Attribute/HP">HP</a></li>
+<li><a href="/wiki/Attribute/ATK" title="Attribute/ATK">ATK</a></li>
+<li><a href="/wiki/Attribute/DEF" title="Attribute/DEF">DEF</a></li>
+<li><a href="/wiki/Attribute/RES" title="Attribute/RES">RES</a></li>
+<li><a href="/wiki/Attribute/Attack_interval" title="Attribute/Attack interval">Attack interval</a></li></ul>
+</div></div></div></div><div class="ranger-row"><div class="ranger-group level-1 ranger-subgroup"><div class="ranger-wrap">Operator</div></div><div class="ranger-listbox"><div class="ranger-wrap ranger-even hlist"><div class="ranger-list">
+<ul><li><a href="/wiki/Attribute/Block" title="Attribute/Block">Block</a></li>
+<li><a href="/wiki/Attribute/Cost" title="Attribute/Cost">Cost</a></li>
+<li><a href="/wiki/Attribute/Redeployment_time" title="Attribute/Redeployment time">Redeployment time</a></li></ul>
+</div></div></div></div><div class="ranger-row"><div class="ranger-group level-1 ranger-subgroup"><div class="ranger-wrap">Enemy</div></div><div class="ranger-listbox"><div class="ranger-wrap ranger-odd hlist"><div class="ranger-list">
+<ul><li><a href="/wiki/Attribute/Elemental_RES" title="Attribute/Elemental RES">Elemental RES (E-RES)</a></li>
+<li><a href="/wiki/Attribute/Effect_Resistance" title="Attribute/Effect Resistance">Effect Resistance (ERST)</a></li>
+<li><a href="/wiki/Attribute/Movement_speed" title="Attribute/Movement speed">Movement speed</a></li>
+<li><a href="/wiki/Attribute/Weight" title="Attribute/Weight">Weight</a></li></ul>
+</div></div></div></div></div></div></div></div></div><div class="ranger-row"><div class="ranger-group level-0"><div class="ranger-wrap"><a class="mw-selflink selflink">Damage</a></div></div><div class="ranger-listbox"><div class="ranger-wrap ranger-even hlist"><div class="ranger-list">
+<ul><li><a href="/wiki/Damage/Physical" title="Damage/Physical">Physical</a></li>
+<li><a href="/wiki/Damage/Arts" title="Damage/Arts">Arts</a></li>
+<li><a href="/wiki/Damage/True" title="Damage/True">True</a></li>
+<li><a href="/wiki/Damage/Elemental" title="Damage/Elemental">Elemental</a></li></ul>
+</div></div></div></div><div class="ranger-row"><div class="ranger-group level-0"><div class="ranger-wrap">Operator</div></div><div class="ranger-listbox"><div class="ranger-sublist level-0"><div class="ranger-section mw-collapsible-content"><div class="ranger-section-body mw-collapsible-content" style="--count:2"><div class="ranger-row empty-group"><div class="ranger-listbox"><div class="ranger-wrap ranger-odd hlist"><div class="ranger-list">
+<ul><li><a href="/wiki/Base_skill" title="Base skill">Base skill</a></li>
+<li><a href="/wiki/Continuously_Attack" title="Continuously Attack">Continuously Attack</a></li>
+<li><a href="/wiki/EXP_(Operator)" title="EXP (Operator)">EXP</a></li>
+<li><a href="/wiki/Fever" title="Fever">Fever</a></li>
+<li><a href="/wiki/Potential" title="Potential">Potential</a></li>
+<li><a href="/wiki/Promotion" title="Promotion">Promotion</a></li>
+<li><a href="/wiki/Talent" title="Talent">Talent</a></li>
+<li><a href="/wiki/Trust" title="Trust">Trust</a></li>
+<li><a href="/wiki/Weakness_Damage" title="Weakness Damage">Weakness Damage</a></li></ul>
+</div></div></div></div><div class="ranger-row"><div class="ranger-group level-1 ranger-subgroup"><div class="ranger-wrap"><a href="/wiki/Skill" title="Skill">Skill</a></div></div><div class="ranger-listbox"><div class="ranger-wrap ranger-even hlist"><div class="ranger-list">
+<ul><li><a href="/wiki/Ammunition" title="Ammunition">Ammunition</a></li>
+<li><a href="/wiki/Chanting" title="Chanting">Chanting</a></li>
+<li><a href="/wiki/Equipment_Alteration" title="Equipment Alteration">Equipment Alteration</a></li>
+<li><a href="/wiki/Mana" title="Mana">Mana</a></li>
+<li><a href="/wiki/Move" title="Move">Move</a></li>
+<li><a href="/wiki/Overcharge" title="Overcharge">Overcharge</a></li>
+<li><a href="/wiki/Overload" title="Overload">Overload</a></li></ul>
+</div></div></div></div></div></div></div></div></div><div class="ranger-row"><div class="ranger-group level-0"><div class="ranger-wrap">Enemy</div></div><div class="ranger-listbox"><div class="ranger-sublist level-0"><div class="ranger-section mw-collapsible-content"><div class="ranger-section-body mw-collapsible-content" style="--count:4"><div class="ranger-row"><div class="ranger-group level-1 ranger-subgroup"><div class="ranger-wrap">Races</div></div><div class="ranger-listbox"><div class="ranger-wrap ranger-odd hlist"><div class="ranger-list">
+<ul><li><a href="/wiki/Apparition" title="Apparition">Apparition</a></li>
+<li><a href="/wiki/Arts_Creation" title="Arts Creation">Arts Creation</a></li>
+<li><a href="/wiki/Collapsal_(enemy_race)" title="Collapsal (enemy race)">Collapsal</a></li>
+<li><a href="/wiki/Drone_(enemy_race)" title="Drone (enemy race)">Drone</a></li>
+<li><a href="/wiki/Infected_Creature" title="Infected Creature">Infected Creature</a></li>
+<li><a href="/wiki/Machina" title="Machina">Machina</a></li>
+<li><a href="/wiki/Originium_Creation" title="Originium Creation">Originium Creation</a></li>
+<li><a href="/wiki/Possessed" title="Possessed">Possessed</a></li>
+<li><a href="/wiki/Sarkaz_(enemy_race)" title="Sarkaz (enemy race)">Sarkaz</a></li>
+<li><a href="/wiki/Sea_Monster" title="Sea Monster">Sea Monster</a></li>
+<li><a href="/wiki/Wild_Beast" title="Wild Beast">Wild Beast</a></li></ul>
+</div></div></div></div><div class="ranger-row"><div class="ranger-group level-1 ranger-subgroup"><div class="ranger-wrap">Movement</div></div><div class="ranger-listbox"><div class="ranger-wrap ranger-even hlist"><div class="ranger-list">
+<ul><li><a href="/wiki/Pathing" title="Pathing">Pathing</a></li>
+<li><a href="/wiki/Collision" title="Collision">Collision</a></li></ul>
+</div></div></div></div><div class="ranger-row"><div class="ranger-group level-1 ranger-subgroup"><div class="ranger-wrap">Properties</div></div><div class="ranger-listbox"><div class="ranger-wrap ranger-odd hlist"><div class="ranger-list">
+<ul><li><a href="/wiki/Low-Altitude_Hovering" title="Low-Altitude Hovering">Low-Altitude Hovering</a></li>
+<li><a href="/wiki/Refraction" title="Refraction">Refraction</a></li></ul>
+</div></div></div></div><div class="ranger-row"><div class="ranger-group level-1 ranger-subgroup"><div class="ranger-wrap">Special</div></div><div class="ranger-listbox"><div class="ranger-wrap ranger-even hlist"><div class="ranger-list">
+<ul><li><a href="/wiki/Accuracy" title="Accuracy">Accuracy</a></li>
+<li><a href="/wiki/Ammunition" title="Ammunition">Ammunition</a></li>
+<li><a href="/wiki/Corruption" title="Corruption">Corruption</a></li>
+<li><a href="/wiki/Dominion_(mechanic)" title="Dominion (mechanic)">Dominion</a></li>
+<li><a href="/wiki/Energy" title="Energy">Energy</a></li>
+<li><a href="/wiki/Identity" title="Identity">Identity</a></li>
+<li><a href="/wiki/Imprisonment" title="Imprisonment">Imprisonment</a></li>
+<li><a href="/wiki/Inspire" title="Inspire">Inspire</a></li>
+<li><a href="/wiki/Reborn_Creation" title="Reborn Creation">Reborn Creation</a></li>
+<li><a href="/wiki/Straight_Shot" title="Straight Shot">Straight Shot</a></li>
+<li><a href="/wiki/Waregeist" title="Waregeist">Waregeist</a></li></ul>
+</div></div></div></div></div></div></div></div></div><div class="ranger-row"><div class="ranger-group level-0"><div class="ranger-wrap"><a href="/wiki/Buff" title="Buff">Buff</a></div></div><div class="ranger-listbox"><div class="ranger-wrap ranger-odd hlist"><div class="ranger-list">
+<ul><li><a href="/wiki/Barrier" title="Barrier">Barrier</a></li>
+<li><a href="/wiki/Camouflage" title="Camouflage">Camouflage</a></li>
+<li><a href="/wiki/Damage_Reduction" title="Damage Reduction">Damage Reduction</a></li>
+<li><a href="/wiki/Inspiration" title="Inspiration">Inspiration</a></li>
+<li><a href="/wiki/Invisible" title="Invisible">Invisible</a></li>
+<li><a href="/wiki/Sanctuary" title="Sanctuary">Sanctuary</a></li>
+<li><a href="/wiki/Shield" title="Shield">Shield</a></li>
+<li><a href="/wiki/Status_Resistance" title="Status Resistance">Status Resistance</a></li>
+<li><a href="/wiki/Take_Off" title="Take Off">Take Off</a></li>
+<li><a href="/wiki/Tenacity" title="Tenacity">Tenacity</a></li>
+<li><a href="/wiki/Vigor" title="Vigor">Vigor</a></li></ul>
+</div></div></div></div><div class="ranger-row"><div class="ranger-group level-0"><div class="ranger-wrap"><a href="/wiki/Debuff" title="Debuff">Debuff</a></div></div><div class="ranger-listbox"><div class="ranger-wrap ranger-even hlist"><div class="ranger-list">
+<ul><li><a href="/wiki/Bind" title="Bind">Bind</a></li>
+<li><a href="/wiki/Critically_Wounded" title="Critically Wounded">Critically Wounded</a></li>
+<li><a href="/wiki/Disarm" title="Disarm">Disarm</a></li>
+<li><a href="/wiki/Enfeeble" title="Enfeeble">Enfeeble</a></li>
+<li><a href="/wiki/Fragile" title="Fragile">Fragile</a></li>
+<li><a href="/wiki/Levitate" title="Levitate">Levitate</a></li>
+<li><a href="/wiki/Silence_(debuff)" title="Silence (debuff)">Silence</a></li>
+<li><a href="/wiki/Sleep" title="Sleep">Sleep</a></li>
+<li><a href="/wiki/Slow" title="Slow">Slow</a></li>
+<li><a href="/wiki/Sluggish" title="Sluggish">Sluggish</a></li>
+<li><a href="/wiki/Steal" title="Steal">Steal</a></li>
+<li><a href="/wiki/Weightless" title="Weightless">Weightless</a></li></ul>
+</div></div></div></div><div class="ranger-row"><div class="ranger-group level-0"><div class="ranger-wrap"><a href="/wiki/Negative_Status" title="Negative Status">Negative Status</a></div></div><div class="ranger-listbox"><div class="ranger-wrap ranger-odd hlist"><div class="ranger-list">
+<ul><li><a href="/wiki/Burning_Breath" title="Burning Breath">Burning Breath</a></li>
+<li><a href="/wiki/Cold" title="Cold">Cold</a></li>
+<li><a href="/wiki/Fear" title="Fear">Fear</a></li>
+<li><a href="/wiki/Freeze" title="Freeze">Freeze</a></li>
+<li><a href="/wiki/Lure" title="Lure">Lure</a></li>
+<li><a href="/wiki/Paralysis" title="Paralysis">Paralysis</a></li>
+<li><a href="/wiki/Stun" title="Stun">Stun</a></li></ul>
+</div></div></div></div><div class="ranger-row"><div class="ranger-group level-0"><div class="ranger-wrap"><a href="/wiki/Elemental_Injury" title="Elemental Injury">Elemental Injury</a></div></div><div class="ranger-listbox"><div class="ranger-wrap ranger-even hlist"><div class="ranger-list">
+<ul><li><a href="/wiki/Burn" title="Burn">Burn</a></li>
+<li><a href="/wiki/Corrosion" title="Corrosion">Corrosion</a></li>
+<li><a href="/wiki/Necrosis" title="Necrosis">Necrosis</a></li>
+<li><a href="/wiki/Nervous_Impairment" title="Nervous Impairment">Nervous Impairment</a></li></ul>
+</div></div></div></div><div class="ranger-row"><div class="ranger-group level-0"><div class="ranger-wrap">RIIC</div></div><div class="ranger-listbox"><div class="ranger-wrap ranger-odd hlist"><div class="ranger-list">
+<ul><li><a href="/wiki/Attacking_Team" title="Attacking Team">Attacking Team</a></li>
+<li><a href="/wiki/Causality_%26_Karma" title="Causality &amp; Karma">Causality &amp; Karma</a></li>
+<li><a href="/wiki/Chain_of_Thought" title="Chain of Thought">Chain of Thought</a></li>
+<li><a href="/wiki/Defending_Team" title="Defending Team">Defending Team</a></li>
+<li><a href="/wiki/Dreamland_(RIIC)" title="Dreamland (RIIC)">Dreamland</a></li>
+<li><a href="/wiki/Felvine" title="Felvine">Felvine</a></li>
+<li><a href="/wiki/Intelligence_Reserve" title="Intelligence Reserve">Intelligence Reserve</a></li>
+<li><a href="/wiki/Knight" title="Knight">Knight</a></li>
+<li><a href="/wiki/Measure" title="Measure">Measure</a></li>
+<li><a href="/wiki/Memory_Fragments" class="mw-redirect" title="Memory Fragments">Memory Fragments</a></li>
+<li><a href="/wiki/Monster_Hunter_Party" title="Monster Hunter Party">Monster Hunter Party</a></li>
+<li><a href="/wiki/Monster_Meal" title="Monster Meal">Monster Meal</a></li>
+<li><a href="/wiki/Operation_Platform" title="Operation Platform">Operation Platform</a></li>
+<li><a href="/wiki/Passion" title="Passion">Passion</a></li>
+<li><a href="/wiki/Perception_Information" title="Perception Information">Perception Information</a></li>
+<li><a href="/wiki/Pure_Gold_Production_Line" title="Pure Gold Production Line">Pure Gold Production Line</a></li>
+<li><a href="/wiki/Soundless_Resonance" title="Soundless Resonance">Soundless Resonance</a></li>
+<li><a href="/wiki/Ursus_Specialty_Beverage" title="Ursus Specialty Beverage">Ursus Specialty Beverage</a></li>
+<li><a href="/wiki/Witchcraft_Crystal" title="Witchcraft Crystal">Witchcraft Crystal</a></li>
+<li><a href="/wiki/Worldly_Plight" title="Worldly Plight">Worldly Plight</a></li></ul>
+</div></div></div></div><div class="ranger-row"><div class="ranger-group level-0"><div class="ranger-wrap">Advanced</div></div><div class="ranger-listbox"><div class="ranger-wrap ranger-even hlist"><div class="ranger-list"><a href="/wiki/Unit_flags" title="Unit flags">Unit flags</a></div></div></div></div></div></div></div>
+<!-- 
+NewPP limit report
+Cached time: 20261104042808
+Cache expiry: 2592000
+Reduced expiry: false
+Complications: [show‐toc]
+CPU time usage: 0.040 seconds
+Real time usage: 0.087 seconds
+Preprocessor visited node count: 334/1000000
+Revision size: 10189/4194304 bytes
+Post‐expand include size: 27166/4194304 bytes
+Template argument size: 0/4194304 bytes
+Highest expansion depth: 4/100
+Expensive parser function count: 1/500
+Unstrip recursion depth: 0/20
+Unstrip post‐expand size: 518/10000000 bytes
+Lua time usage: 0.007/15.000 seconds
+Lua memory usage: 1202593/52428800 bytes
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%   42.667      1 -total
+ 46.65%   19.906      1 Template:Skill
+ 46.13%   19.682      1 Template:Mechanics
+ 28.28%   12.065      1 Template:Navbox
+  6.80%    2.901      1 Template:Reflist
+-->
+
+<!-- Saved in parser cache with key arknights_en:pcache:idhash:10717-0!canonical and timestamp 20261104042807 and revision id 770701. Rendering was triggered because: edit-page
+ -->
+</div>
+<div class="printfooter" data-nosnippet="">Retrieved from "<a dir="ltr" href="https://arknights.wiki.gg/wiki/Damage?oldid=770701">https://arknights.wiki.gg/wiki/Damage?oldid=770701</a>"</div></div>
+					<div id="catlinks" class="catlinks" data-mw="interface"><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="/wiki/Special:Categories" title="Special:Categories">Category</a>: <ul><li><a href="/wiki/Category:Mechanics" title="Category:Mechanics">Mechanics</a></li></ul></div><div id="mw-hidden-catlinks" class="mw-hidden-catlinks mw-hidden-cats-hidden">Hidden category: <ul><li><a href="/wiki/Category:Pages_with_navboxes" title="Category:Pages with navboxes">Pages with navboxes</a></li></ul></div></div>
+				</div>
+			</main>
+			<aside id="wikigg-sl-rail" data-mw="WggShowcaseLayout">
+        <div
+            class="wikigg-showcase__unit wikigg-showcase__reserved--mhp"
+            data-wgg-unit-type="pubco"
+        ><div id="adngin-Sidebar-0"></div></div>
+        <div
+            class="wikigg-showcase__unit wikigg-showcase__reserved--mrec"
+            data-wgg-unit-type="pubco"
+        ><div id="nn_mpu1"></div></div>
+        <div
+            class="wikigg-showcase__unit wikigg-showcase__reserved--mrec"
+            data-wgg-unit-type="internal"
+        ></div>
+        <div
+            class="wikigg-showcase__unit wikigg-showcase__reserved--mrec"
+            data-wgg-unit-type="pubco"
+        ><div id="nn_mpu2"></div></div>
+        <div class="wikigg-showcase__report-link">
+            <a href="https://www.wiki.gg/t/bad-ad" target="_blank" rel="nofollow">Report bad advertisement</a>
+        </div>
+</aside>
+
+		</div>
+		<aside id="wikigg-sl-footer" data-mw="WggShowcaseLayout">
+        <div
+            class="wikigg-showcase__unit wikigg-showcase__reserved--lb"
+            data-wgg-unit-type="internal"
+        ></div>
+</aside>
+
+	</div>
+</div>
+<div id='mw-data-after-content'>
+	<div class="mw-cookiewarning-container"><div class="mw-cookiewarning-text"><span>Cookies help us deliver our services. By using our services, you agree to our use of cookies.</span></div><form method="POST"><div class='oo-ui-layout oo-ui-horizontalLayout'><span class='oo-ui-widget oo-ui-widget-enabled oo-ui-buttonElement oo-ui-buttonElement-framed oo-ui-labelElement oo-ui-flaggedElement-progressive oo-ui-buttonWidget'><a role='button' tabindex='0' href='https://www.indie.io/privacy-policy' rel='nofollow' class='oo-ui-buttonElement-button'><span class='oo-ui-iconElement-icon oo-ui-iconElement-noIcon oo-ui-image-progressive'></span><span class='oo-ui-labelElement-label'>More information</span><span class='oo-ui-indicatorElement-indicator oo-ui-indicatorElement-noIndicator oo-ui-image-progressive'></span></a></span><span class='oo-ui-widget oo-ui-widget-enabled oo-ui-inputWidget oo-ui-buttonElement oo-ui-buttonElement-framed oo-ui-labelElement oo-ui-flaggedElement-primary oo-ui-flaggedElement-progressive oo-ui-buttonInputWidget'><button type='submit' tabindex='0' name='disablecookiewarning' value='OK' class='oo-ui-inputWidget-input oo-ui-buttonElement-button'><span class='oo-ui-iconElement-icon oo-ui-iconElement-noIcon oo-ui-image-invert'></span><span class='oo-ui-labelElement-label'>OK</span><span class='oo-ui-indicatorElement-indicator oo-ui-indicatorElement-noIndicator oo-ui-image-invert'></span></button></span></div></form></div>
+</div>
+
+
+<footer id="footer" class="mw-footer" >
+	<ul id="footer-info">
+	<li id="footer-info-lastmod"> This page was last edited on 20 October 2026, at 06:51.</li>
+	<li id="footer-info-copyright"><div class="wikigg-copyright-box">Pages that were created prior to September 2023 are adapted from the Arknights Fandom wiki.<br />Page content is under <a class="external" rel="nofollow" href="https://creativecommons.org/licenses/by-sa/4.0">Creative Commons Attribution-ShareAlike 4.0 License</a> unless otherwise noted.</div></li>
+</ul>
+
+	<ul id="footer-places">
+	<li id="footer-places-wikigg-tos"><a href="https://www.indie.io/terms-of-service">Terms of Service</a></li>
+	<li id="footer-places-wikigg-privacy"><a href="https://www.indie.io/privacy-policy">Privacy policy</a></li>
+	<li id="footer-places-wikigg-support"><a href="https://support.wiki.gg">Support Wiki</a></li>
+	<li id="footer-places-wikigg-servicedesk"><a href="https://wiki.gg/go/servicedesk">Send a ticket to wiki.gg</a></li>
+	<li id="footer-places-wikigg-statuspage"><a href="https://wikiggstatus.com">Status page</a></li>
+	<li id="footer-places-wikigg-pcmp"><a href="#" class="nn-cmp-show" style="display: none">Manage cookie settings</a></li>
+	<li id="footer-places-wikigg-ccpa"><div id="ccpa-link" class="ccpa-link"></div></li>
+</ul>
+
+	<ul id="footer-icons" class="noprint">
+	<li id="footer-copyrightico"><a href="https://creativecommons.org/licenses/by-sa/4.0" class="cdx-button cdx-button--fake-button cdx-button--size-large cdx-button--fake-button--enabled"><img src="https://commons.wiki.gg/images/CC-BY-SA_footer_badge.svg?d931d3" alt="Creative Commons Attribution-ShareAlike 4.0 License" height="31" width="88" loading="lazy" data-theme="light"><img src="https://commons.wiki.gg/images/CC-BY-SA_footer_badge_dark.svg?55845c" alt="Creative Commons Attribution-ShareAlike 4.0 License" height="31" width="88" loading="lazy" data-theme="dark"></a></li>
+	<li id="footer-poweredbyico"><a href="https://www.mediawiki.org/" class="cdx-button cdx-button--fake-button cdx-button--size-large cdx-button--fake-button--enabled"><img src="https://commons.wiki.gg/images/MediaWiki_footer_badge.svg?8c3a36" alt="Powered by MediaWiki" width="88" height="31" loading="lazy" data-theme="light"><img src="https://commons.wiki.gg/images/MediaWiki_footer_badge_dark.svg?12ec0a" alt="Powered by MediaWiki" width="88" height="31" loading="lazy" data-theme="dark"></a></li>
+	<li id="footer-partofico"><a href="https://wiki.gg" class="cdx-button cdx-button--fake-button cdx-button--size-large cdx-button--fake-button--enabled"><img src="https://commons.wiki.gg/images/d/d1/Network_footer_badge.svg?9d5a96" alt="Part of wiki.gg" height="31" width="88" loading="lazy" data-theme="light"><img src="https://commons.wiki.gg/images/2/23/Network_footer_badge_dark.svg?9cf3e8" alt="Part of wiki.gg" height="31" width="88" loading="lazy" data-theme="dark"></a></li>
+</ul>
+
+</footer>
+
+
+<script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgBackendResponseTime":147,"wgPageParseReport":{"limitreport":{"cputime":"0.040","walltime":"0.087","ppvisitednodes":{"value":334,"limit":1000000},"revisionsize":{"value":10189,"limit":4194304},"postexpandincludesize":{"value":27166,"limit":4194304},"templateargumentsize":{"value":0,"limit":4194304},"expansiondepth":{"value":4,"limit":100},"expensivefunctioncount":{"value":1,"limit":500},"unstrip-depth":{"value":0,"limit":20},"unstrip-size":{"value":518,"limit":10000000},"timingprofile":["100.00%   42.667      1 -total"," 46.65%   19.906      1 Template:Skill"," 46.13%   19.682      1 Template:Mechanics"," 28.28%   12.065      1 Template:Navbox","  6.80%    2.901      1 Template:Reflist"]},"scribunto":{"limitreport-timeusage":{"value":"0.007","limit":"15.000"},"limitreport-memusage":{"value":1202593,"limit":52428800}},"cachereport":{"timestamp":"20261104042808","ttl":2592000,"transientcontent":false}}});});</script>
+<script>(function(){var ck="; "+document.cookie,ci=ck.indexOf("; "+"wgg_aegis"+"="),cv="";if(ci>=0){var cr=ck.slice(ci+"wgg_aegis".length+3),ce=cr.indexOf(";");cv=ce<0?cr:cr.slice(0,ce);}if(cv&&(!true||cv.indexOf("~")>0)){return;}var t0=(performance&&performance.now)?performance.now():Date.now();var s=false,q=false,u=null,dpr=window.devicePixelRatio||1;var evs=['pointermove','pointerdown','pointerup','touchstart','keydown','wheel'];var a={trusted:true,first:0,last:0,moves:0,motion:0,mism:0,hidden:0,oob:0,turns:0,seq:0,sjit:0},P={},px=null,py=null,fx=0,fy=0,pdx=null,pdy=null,ox=null,oy=0;function N(){return (performance&&performance.now)?performance.now():Date.now();}function D(){if(q){return;}q=true;for(var i=0;i<evs.length;i++){removeEventListener(evs[i],H);}removeEventListener('visibilitychange',V);if(u){clearTimeout(u);}var nt=px!==null?Math.sqrt((px-fx)*(px-fx)+(py-fy)*(py-fy)):0;var p={isTrusted:a.trusted,time:Math.round(a.first-t0),span:Math.round(a.last-a.first),moves:a.moves,motion:Math.round(a.motion),mism:a.mism,hidden:a.hidden,oob:a.oob,pt:Object.keys(P).length,str:a.motion>0?Math.round(100*nt/a.motion):0,turns:a.turns,seq:a.seq,sjit:a.sjit};try{fetch("https://aegis-app.wiki.gg/grant",{method:"POST",credentials:"include",headers:{"Content-Type":"application/json"},body:JSON.stringify(p),keepalive:true})}catch(e){}}function H(e){var n=N();if(!s){if(!e.isTrusted){return;}s=true;a.first=n;u=setTimeout(D,700);}if(!e.isTrusted){a.trusted=false;}a.last=n;if(document.hidden){a.hidden++;}if(e.type.charAt(0)==='p'){if(e.pointerType){P[e.pointerType]=1;}var x=e.clientX,y=e.clientY;if(x<0||y<0||x>innerWidth||y>innerHeight){a.oob++;}var qx=e.screenX-x,qy=e.screenY-y;if(qx===0&&qy===0){a.seq++;}if(ox!==null&&(Math.abs(qx-ox)>2||Math.abs(qy-oy)>2)){a.sjit++;}ox=qx;oy=qy;if(e.type==="pointermove"){a.moves++;if(px!==null){var ddx=x-px,ddy=y-py;a.motion+=Math.sqrt(ddx*ddx+ddy*ddy);var mx=e.movementX||0,my=e.movementY||0;var c1=Math.abs(mx-ddx)+Math.abs(my-ddy),c2=Math.abs(mx-ddx*dpr)+Math.abs(my-ddy*dpr);if((c1<c2?c1:c2)>2){a.mism++;}if(pdx!==null&&(ddx*pdx+ddy*pdy)<0){a.turns++;}pdx=ddx;pdy=ddy;}else{fx=x;fy=y;}px=x;py=y;}}if(a.moves>=40){D();}}function V(){if(document.visibilityState==='hidden'&&s){D();}}for(var i=0;i<evs.length;i++){addEventListener(evs[i],H,{passive:true});}addEventListener('visibilitychange',V);addEventListener('pagehide',function(){if(s){D();}},{capture:true});})();</script>
+<script>window.__CF$cv$params={r:'a551fc9b28522dde',t:'MTc5Mzc3ODE5NQ==',u:'01a1a5831d1072cd876890ff1d1b8438',ut:'1_5dbIzFURBwUCagSQRdfPRGjIRp03vlvFvjrL7DSow-1793778195-1.2.1.1-OMF7APgbFQYuXXoeMPl7wPb8h0sc2pg2bPDXFybgicX0xiVfCNBO9yUBwu4HVg92Fhk1lTtELFIzret.4bDKHn0fxQ3.hAslXgbbG.e22FU',i:60};(function(){if(!document.body)return;var l=window.location,o;try{o=new URL(l.origin).origin}catch(e){try{o=new URL(new URL(l.href).origin).origin}catch(e){o=''}}var u='/cdn-cgi/challenge-platform/scripts/precursor/main.js?ray=a551fc9b28522dde',s=document.createElement('script');s.src=o?new URL(u,o).href:u;document.head.appendChild(s);})();</script><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"26b2c6e7c852417d8f9d11b0c7f02309","spa":2}' crossorigin="anonymous"></script>
+</body>
+</html>

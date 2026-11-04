@@ -1,0 +1,202 @@
+# AUTO-GENERATED curated benchmark subset; see operators_all.yaml.
+version: gamedata-63c7cec73c38
+source: &id001
+  source_id: gamedata_63c7cec73c38
+  title: Kengxxiao/ArknightsGameData (CN official data extraction)
+  url: https://github.com/Kengxxiao/ArknightsGameData/tree/63c7cec73c3858d0ae913f85cc89af3cef4d744f/zh_CN/gamedata/excel
+  section: character_table.json / skill_table.json
+  retrieved_at: '2026-11-04T06:53:21.267319+00:00'
+  quote: 干员与技能数值来自固定 commit 的公开拆包数据
+operators:
+- id: char_172_svrash
+  name: 银灰
+  class_name: WARRIOR
+  sub_profession: lord
+  trait: ''
+  rarity: 6
+  phase: 2
+  level: 90
+  atk: 713.0
+  def_value: 397.0
+  res_value: 0.1
+  hp: 2560.0
+  attack_interval: 1.3
+  skills:
+  - id: skchr_svrash_3
+    operator_id: char_172_svrash
+    name: 真银斩
+    skill_index: 3
+    description: 防御力<@ba.vdown>-{-def:0%}</>，攻击力<@ba.vup>+{atk:0%}</>，攻击范围<@ba.vup>扩大</>，同时攻击至多<@ba.vup>{attack@max_target}</>个目标（视为近距离攻击）
+    atk_bonus: 2.0
+    atk_multiplier: 1.0
+    heal_multiplier: 1.0
+    atk_time_flat: 0.0
+    aspd_flat: 0.0
+    damage_type: physical
+    hits: 1
+    duration: null
+    extra_components: []
+    calc_supported: true
+    unsupported_reason: ''
+    calc_note: 按单个目标计算，未乘目标数；未计入天赋攻击力加成：领袖 +10%
+  citation: *id001
+- id: char_180_amgoat
+  name: 艾雅法拉
+  class_name: CASTER
+  sub_profession: corecaster
+  trait: ''
+  rarity: 6
+  phase: 2
+  level: 90
+  atk: 645.0
+  def_value: 122.0
+  res_value: 0.2
+  hp: 1743.0
+  attack_interval: 1.6
+  skills:
+  - id: skchr_amgoat_3
+    operator_id: char_180_amgoat
+    name: 火山
+    skill_index: 3
+    description: 攻击力<@ba.vup>+{atk:0%}</>，攻击范围<@ba.vup>增大</>，攻击间隔<@ba.vup>大幅度缩短</>，攻击变为随机对攻击范围内至多<@ba.vup>{attack@max_target}</>个敌人发射熔岩
+    atk_bonus: 1.3
+    atk_multiplier: 1.0
+    heal_multiplier: 1.0
+    atk_time_flat: -1.1
+    aspd_flat: 0.0
+    damage_type: arts
+    hits: 1
+    duration: null
+    extra_components: []
+    calc_supported: true
+    unsupported_reason: ''
+    calc_note: 按单个目标计算，未乘目标数；未计入天赋攻击力加成：炎息 +14%
+  citation: *id001
+- id: char_103_angel
+  name: 能天使
+  class_name: SNIPER
+  sub_profession: fastshot
+  trait: ''
+  rarity: 6
+  phase: 2
+  level: 90
+  atk: 540.0
+  def_value: 161.0
+  res_value: 0.0
+  hp: 1673.0
+  attack_interval: 1.0
+  skills:
+  - id: skchr_angel_3
+    operator_id: char_103_angel
+    name: 过载模式
+    skill_index: 3
+    description: 攻击变为<@ba.vup>{attack@times}</>连射，攻击间隔<@ba.vup>一定程度缩短</>，攻击力<@ba.vup>提升至{attack@atk_scale:0%}</>\n<@ba.rem>技能会自动开启</>
+    atk_bonus: 0.0
+    atk_multiplier: 1.1
+    heal_multiplier: 1.0
+    atk_time_flat: -0.11
+    aspd_flat: 0.0
+    damage_type: physical
+    hits: 5
+    duration: null
+    extra_components: []
+    calc_supported: true
+    unsupported_reason: ''
+    calc_note: 未计入天赋攻击力加成：天使的祝福 +6%；按 5 段计算
+  citation: *id001
+- id: char_350_surtr
+  name: 史尔特尔
+  class_name: WARRIOR
+  sub_profession: artsfghter
+  trait: ''
+  rarity: 6
+  phase: 2
+  level: 90
+  atk: 672.0
+  def_value: 414.0
+  res_value: 0.15
+  hp: 2916.0
+  attack_interval: 1.25
+  skills:
+  - id: skchr_surtr_3
+    operator_id: char_350_surtr
+    name: 黄昏
+    skill_index: 3
+    description: 立即恢复所有生命；攻击力<@ba.vup>+{atk:0%}</>，攻击距离<@ba.vup>+{ability_range_forward_extend}</>，攻击目标数<@ba.vup>+3</>，生命上限<@ba.vup>+{max_hp}</>，逐渐流失生命（<@ba.vup>{duration}</>秒后到达最大生命{hp_ratio:0%}/秒）；<@ba.rem>持续时间无限</>
+    atk_bonus: 3.3
+    atk_multiplier: 1.0
+    heal_multiplier: 1.0
+    atk_time_flat: 0.0
+    aspd_flat: 0.0
+    damage_type: arts
+    hits: 1
+    duration: 60.0
+    extra_components: []
+    calc_supported: true
+    unsupported_reason: ''
+    calc_note: 按单个目标计算，未乘目标数
+  citation: *id001
+- id: char_4064_mlynar
+  name: 玛恩纳
+  class_name: WARRIOR
+  sub_profession: librator
+  trait: 通常不攻击且阻挡数为0，技能未开启时<@ba.kw>{max_stack_cnt}</>秒内攻击力逐渐提升至最高<@ba.kw>+{atk:0%}</>且技能结束时重置攻击力
+  rarity: 6
+  phase: 2
+  level: 90
+  atk: 355.0
+  def_value: 502.0
+  res_value: 0.15
+  hp: 3906.0
+  attack_interval: 1.2
+  skills:
+  - id: skchr_mlynar_3
+    operator_id: char_4064_mlynar
+    name: 未照耀的荣光
+    skill_index: 3
+    description: 攻击范围<@ba.vup>扩大</>，特性提升至<@ba.vup>{trait_up}</>倍（每击倒一名敌人时特性倍率<@ba.vup>{per_kill_reduce:0%}</>），攻击对<@ba.vup>{attack@max_target}</>个目标造成相当于<@ba.vup>{attack@atk_scale:0%}</>攻击力的物理伤害。范围内所有敌人受到卡西米尔干员攻击时额外附带玛恩纳<@ba.vup>{atk_scale:0%}</>攻击力的<@ba.vup>真实</>伤害
+    atk_bonus: 0.0
+    atk_multiplier: 1.8
+    heal_multiplier: 1.0
+    atk_time_flat: 0.0
+    aspd_flat: 0.0
+    damage_type: physical
+    hits: 1
+    duration: null
+    extra_components: []
+    calc_supported: false
+    unsupported_reason: 技能含元素/天赋倍率等未纳入的机制
+    calc_note: ''
+  citation: *id001
+- id: char_377_gdglow
+  name: 澄闪
+  class_name: CASTER
+  sub_profession: funnel
+  trait: 操作<@ba.kw>浮游单元</>造成<@ba.kw>法术伤害</>\n单元攻击同一敌人伤害提升（最高造成干员110%攻击力的伤害）
+  rarity: 6
+  phase: 2
+  level: 90
+  atk: 331.0
+  def_value: 125.0
+  res_value: 0.2
+  hp: 1480.0
+  attack_interval: 1.3
+  skills:
+  - id: skchr_gdglow_3
+    operator_id: char_377_gdglow
+    name: 澄净闪耀
+    skill_index: 3
+    description: 停止攻击，浮游单元<@ba.vup>+2</>，释放浮游单元锁定敌人攻击，攻击范围<@ba.vup>扩大</>至整个战场，攻击力<@ba.vup>+{atk:0%}</>，浮游单元攻击附带<@ba.vup>{attack@sluggish}</>秒<$ba.sluggish>停顿</>\n<@ba.rem>浮游单元锁敌后直至敌人被击杀、自爆或技能结束后返回干员身边</>
+    atk_bonus: 0.8
+    atk_multiplier: 1.0
+    heal_multiplier: 1.0
+    atk_time_flat: 0.0
+    aspd_flat: 0.0
+    damage_type: arts
+    hits: 1
+    duration: null
+    extra_components: []
+    calc_supported: false
+    unsupported_reason: 技能含召唤/浮游/陷阱/停止攻击/元素/持续伤害等未纳入的机制
+    calc_note: ''
+  citation: *id001
