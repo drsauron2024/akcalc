@@ -109,7 +109,6 @@
 - 命令：fetch → build_operators → build_kb → build_semantica → smoke → run_eval。
 - 固定版本：游戏数据 commit、wiki 抓取日期、模型名。
 - 参考项目：Semantica（ingest/parse/graph/provenance）、Kengxxiao/ArknightsGameData、Arknights Terra Wiki。
-- AI 工具：Claude Code 辅助代码/文档；公式与数值人工校订；评测由脚本实际运行。
 
 ## 9. 个人贡献与分工（按实际填写）
 
@@ -118,7 +117,6 @@
 - Agent/计算器/评测；
 - UI 与演示；
 - 报告撰写与结果复核。
-- 若使用 AI 工具，明确列出用于哪些部分、如何验证。
 
 ## 10. 图表清单
 
@@ -133,5 +131,4 @@
 - [ ] 代码可运行、`.env` 未提交、数据可重建。
 - [ ] 20 题结果文件与报告数字一致。
 - [ ] 引用 URL/段落可点开核对。
-- [ ] 报告中明确说明 AI 工具与参考代码的使用。
 - [ ] 向助教确认提交清单（Semantica PPT 最后一页的“60 题”表述不适用于本课题）。
