@@ -85,6 +85,7 @@ def skill_text(op: OperatorRecord, skill) -> str:
         f"{'可计算' if skill.calc_supported else '暂不支持计算：' + skill.unsupported_reason}"
         + _extra_text(skill)
         + (f"；计算口径：{skill.calc_note}" if skill.calc_note else "")
+        + (f"；参数化公式：{skill.formula_note}" if skill.formula_note else "")
     )
 
 

@@ -5,7 +5,7 @@
 ## 0. 摘要（约 300 字）
 
 - 问题：通用大模型记不住明日方舟的干员面板、技能倍率与保底规则，且无法追溯出处。
-- 工作：构建一个 Ontology-grounded 的数值问答与计算助手；8 张公式卡、421 名干员实体（666 个可计算技能）、20 题评测。
+- 工作：构建一个 Ontology-grounded 的数值问答与计算助手；8 张公式卡、421 名干员实体（667 个可计算技能）、20 题评测。
 - 结果：full 20/20；raw 4/12 数值题；rag 5/12 数值题（41.7%）、澄清 0/2、无结构化引用；full 平均 1.00 s。
 - 结论：检索解决“事实”，确定性计算与治理解决“可信/可审计”。
 
@@ -38,7 +38,7 @@
   - 数值：Kengxxiao/ArknightsGameData，固定 commit `63c7cec`，SHA256 记录在 `meta.json`。
 - 公式卡 schema：id/name/aliases/expression/variables/assumptions/citation/examples。
 - 干员/技能：`build_operators.py` 从 `character_table.json` / `skill_table.json` 的 M3 blackboard 生成，避免手抄错误。
-- 全干员覆盖：421 名可获取干员、967 个技能进入实体库；666 个技能通过 `calc_supported` 分级，其余拒答计算并说明原因。
+- 全干员覆盖：421 名可获取干员、967 个技能进入实体库；667 个技能通过 `calc_supported` 分级，其余拒答计算并说明原因。
 - Semantica 使用：
   - `FileIngestor` + `DocumentParser` 解析 wiki 快照；
   - `GraphBuilder` 重建 44 节点/47 边 ontology；

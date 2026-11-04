@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import pytest
+
 from akcalc.planner import Planner
 from akcalc.schemas import Intent
 
@@ -76,10 +78,32 @@ def test_out_of_domain_refuses():
     assert p.rule_plan("银灰的皮肤什么时候复刻？").intent == Intent.REFUSE
 
 
-def test_unsupported_operator_refuses_calc():
+def test_mlynar_trait_is_parameterized():
     p = planner()
     plan = p.rule_plan("玛恩纳三技能对防御500的伤害是多少？")
-    assert plan.intent == Intent.REFUSE
+    assert plan.intent == Intent.CALCULATE
+    assert plan.variable_bindings["atk_final"] == 1775
+    assert plan.variable_bindings["trait_multiplier"] == 2.0
+
+
+def test_mlynar_kills_and_charge_time():
+    p = planner()
+    plan = p.rule_plan("玛恩纳三技能击杀3名敌人后对防御500的伤害是多少？")
+    assert plan.variable_bindings["trait_multiplier"] == pytest.approx(1.7)
+    assert plan.variable_bindings["atk_final"] == pytest.approx(1562)
+
+    plan = p.rule_plan("玛恩纳三技能蓄力20秒对防御500的伤害是多少？")
+    assert plan.variable_bindings["trait_multiplier"] == pytest.approx(1.0)
+    assert plan.variable_bindings["atk_final"] == pytest.approx(1065)
+
+
+def test_mlynar_formula_lookup_has_parameterized_note():
+    p = planner()
+    plan = p.rule_plan("玛恩纳三技能怎么算？")
+    assert plan.intent == Intent.FORMULA_LOOKUP
+    op, _ = p.resolve_operator("玛恩纳三技能怎么算？")
+    skill = p.resolve_skill("玛恩纳三技能怎么算？", op)
+    assert skill is not None and "k = 满特性" in skill.formula_note
 
 
 def test_all_operators_loaded():

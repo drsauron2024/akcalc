@@ -43,8 +43,6 @@ HARD_UNSUPPORTED = [
 ]
 UNSUPPORTED_KEYS = [
     "ep_damage_ratio",
-    "trait_up",
-    "per_kill_reduce",
 ]
 SOFT_NOTES = {
     "弹药": "按单发计算，不含弹药总数",
@@ -161,13 +159,66 @@ def talent_atk_bonuses(char: dict) -> list[str]:
 
 def parse_hits(desc: str, times: float | None) -> int:
     """Parse fixed hit counts such as '发动16次斩击' from the description."""
+    desc = re.sub(r"<[^>]+>", "", desc or "")
     if times and float(times).is_integer() and times >= 1:
         return int(times)
     for pattern in (r"发动\s*(\d+)\s*次", r"(\d+)\s*次斩击", r"(\d+)\s*段"):
         match = re.search(pattern, desc)
         if match:
             return max(1, int(match.group(1)))
+    # "二连击" is a fixed two-hit attack; "第三次攻击变为六连击" is a
+    # conditional pattern and must not be collapsed into a single count.
+    if "第三次" not in desc:
+        match = re.search(r"([一二三四五六七八九十])连击", desc)
+        if match:
+            return {
+                "一": 1, "二": 2, "三": 3, "四": 4, "五": 5,
+                "六": 6, "七": 7, "八": 8, "九": 9, "十": 10,
+            }[match.group(1)]
     return 1
+
+
+def _best_talent_candidate(talent: dict) -> dict | None:
+    candidates = talent.get("candidates") or []
+    if not candidates:
+        return None
+
+    def rank(cand: dict) -> tuple[int, int]:
+        phase = str((cand.get("unlockCondition") or {}).get("phase", "PHASE_0"))
+        try:
+            phase_num = int(phase.rsplit("_", 1)[-1])
+        except ValueError:
+            phase_num = 0
+        return phase_num, -int(cand.get("requiredPotentialRank") or 0)
+
+    return max(candidates, key=rank)
+
+
+def trait_values(char: dict) -> tuple[float, float]:
+    """Max trait ATK bonus and charge time (Liberator-style traits)."""
+    trait = char.get("trait")
+    if not isinstance(trait, dict):
+        return 0.0, 0.0
+    cand = _best_talent_candidate(trait)
+    if not cand:
+        return 0.0, 0.0
+    bb = blackboard_map(cand)
+    return float(bb.get("atk", 0.0) or 0.0), float(bb.get("max_stack_cnt", 0.0) or 0.0)
+
+
+def talent_atk_scale(char: dict) -> tuple[float, str]:
+    """Talent damage multiplier such as Mlynar's '攻击敌人时攻击力提升至110%'."""
+    for talent in char.get("talents") or []:
+        cand = _best_talent_candidate(talent)
+        if not cand:
+            continue
+        bb = blackboard_map(cand)
+        if "atk_scale_base" in bb:
+            return float(bb["atk_scale_base"]), cand.get("name") or "天赋"
+        match = re.search(r"攻击敌人时攻击力提升至\s*([\d.]+)\s*%", cand.get("description", "") or "")
+        if match:
+            return float(match.group(1)) / 100.0, cand.get("name") or "天赋"
+    return 1.0, ""
 
 
 def trait_text(char: dict) -> str:
@@ -236,10 +287,20 @@ def classify_skill(char: dict, skill: dict, level: dict, bb: dict[str, float]) -
         "attack@range_radius" in bb or (bb.get("attack@max_target") or 0) > 1
     ) and not any("按单个目标" in n for n in notes):
         notes.append("按单个目标计算，未乘目标数")
-    if "连击" in desc and not re.search(r"发动\s*\d+\s*次|(\d+)\s*次斩击", desc):
+    if hits == 1 and "连击" in desc and not re.search(
+        r"发动\s*\d+\s*次|(\d+)\s*次斩击", desc
+    ):
         notes.append("按单次攻击计算，未乘连击段数")
     if "每突进" in desc:
         notes.append("按单段斩击/单个目标计算，未乘突进段数")
+    trait_up = float(bb.get("trait_up", 1.0) or 1.0)
+    per_kill_reduce = abs(float(bb.get("per_kill_reduce", 0.0) or 0.0))
+    if trait_up != 1.0:
+        notes.append(f"特性倍率 k 默认按满特性 {trait_up:g} 计算")
+    if per_kill_reduce:
+        notes.append(f"每击杀一名敌人 k -{per_kill_reduce:.0%}")
+    if "卡西米尔" in desc and "真实" in desc:
+        notes.append("未计入卡西米尔干员附加真实伤害")
 
     extra_components = talent_damage_components(char)
     talent_scale = float(bb.get("talent_scale", 1.0) or 1.0)
@@ -294,10 +355,46 @@ def classify_skill(char: dict, skill: dict, level: dict, bb: dict[str, float]) -
         "hits": hits,
         "duration": bb.get("duration"),
         "extra_components": extra_components,
+        "trait_up": trait_up,
+        "per_kill_reduce": per_kill_reduce,
         "calc_supported": calc_supported,
         "unsupported_reason": reason,
         "calc_note": calc_note if calc_supported else "",
     }
+
+
+def build_formula_note(
+    atk: float,
+    info: dict,
+    trait_atk_bonus: float,
+    trait_charge_time: float,
+    talent_scale: float,
+    talent_name: str,
+) -> str:
+    """Human-readable parameterized formula for time-varying trait skills."""
+    if trait_atk_bonus <= 0 or info["damage_type"] not in {"physical", "arts", "true"}:
+        return ""
+    trait_up = float(info.get("trait_up", 1.0) or 1.0)
+    per_kill = float(info.get("per_kill_reduce", 0.0) or 0.0)
+    k_line = f"k = 满特性 {trait_up:g}"
+    if trait_charge_time > 0:
+        k_line += f"；未蓄满 k = {trait_up:g} × t / {trait_charge_time:g}"
+    if per_kill > 0:
+        k_line += f"；每击杀一名敌人 k −{per_kill:.0%}（最低 1.0）"
+    atk_line = f"Atk_final(k) = {atk:g} × (1 + {trait_atk_bonus:g} × k)"
+    mult = float(info.get("atk_multiplier", 1.0) or 1.0) * talent_scale
+    if info["damage_type"] == "physical":
+        damage_line = f"单目标伤害 = max(Atk_final × {mult:g} − DEF, 0.05 × Atk_final)"
+    elif info["damage_type"] == "arts":
+        damage_line = f"单目标伤害 = max(Atk_final × {mult:g} × (1 − RES), 0.05 × Atk_final)"
+    else:
+        damage_line = f"单目标伤害 = Atk_final × {mult:g}"
+    talent_line = (
+        f"其中 {mult:g} = 技能倍率 {info.get('atk_multiplier', 1.0):g} × 天赋「{talent_name}」{talent_scale:g}"
+        if talent_scale != 1.0
+        else ""
+    )
+    return "\n".join(x for x in [k_line, atk_line, damage_line, talent_line] if x)
 
 
 def build_operator(char: dict, skill_table: dict, source: dict, keep_one_skill: bool = False) -> dict | None:
@@ -306,6 +403,8 @@ def build_operator(char: dict, skill_table: dict, source: dict, keep_one_skill: 
         return None
     phase = phases[-1]
     attrs = phase["attributesKeyFrames"][-1]["data"]
+    trait_atk_bonus, trait_charge_time = trait_values(char)
+    talent_scale, talent_name = talent_atk_scale(char)
     skills = []
     for idx, ref in enumerate(char.get("skills") or [], start=1):
         sid = ref.get("skillId")
@@ -317,6 +416,14 @@ def build_operator(char: dict, skill_table: dict, source: dict, keep_one_skill: 
             continue
         bb = blackboard_map(level)
         info = classify_skill(char, skill, level, bb)
+        info["formula_note"] = build_formula_note(
+            float(attrs["atk"]),
+            info,
+            trait_atk_bonus,
+            trait_charge_time,
+            talent_scale,
+            talent_name,
+        )
         skills.append(
             {
                 "id": sid,
@@ -343,6 +450,9 @@ def build_operator(char: dict, skill_table: dict, source: dict, keep_one_skill: 
         "res_value": float(attrs["magicResistance"]) / 100.0,
         "hp": float(attrs["maxHp"]),
         "attack_interval": float(attrs["baseAttackTime"]),
+        "trait_atk_bonus": trait_atk_bonus,
+        "trait_charge_time": trait_charge_time,
+        "talent_atk_scale": talent_scale,
         "skills": skills,
         "citation": source,
     }

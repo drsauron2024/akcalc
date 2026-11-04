@@ -1821,7 +1821,7 @@
       "label": "玛恩纳",
       "kind": "operator",
       "atk": 355.0,
-      "supported_skills": 2
+      "supported_skills": 3
     },
     {
       "id": "skill:char_4064_mlynar:skchr_mlynar_1",
@@ -1842,7 +1842,7 @@
       "label": "未照耀的荣光",
       "kind": "skill",
       "damage_type": "physical",
-      "calc_supported": false
+      "calc_supported": true
     },
     {
       "id": "operator:char_017_huang",
@@ -11874,6 +11874,11 @@
       "source": "operator:char_4064_mlynar",
       "target": "skill:char_4064_mlynar:skchr_mlynar_3",
       "relation": "has_skill"
+    },
+    {
+      "source": "skill:char_4064_mlynar:skchr_mlynar_3",
+      "target": "formula:physical_damage",
+      "relation": "uses_formula"
     },
     {
       "source": "operator:char_017_huang",

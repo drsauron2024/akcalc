@@ -21,6 +21,9 @@ operators:
   res_value: 0.1
   hp: 2560.0
   attack_interval: 1.3
+  trait_atk_bonus: 0.0
+  trait_charge_time: 0.0
+  talent_atk_scale: 1.0
   skills:
   - id: skchr_svrash_3
     operator_id: char_172_svrash
@@ -36,9 +39,12 @@ operators:
     hits: 1
     duration: null
     extra_components: []
+    trait_up: 1.0
+    per_kill_reduce: 0.0
     calc_supported: true
     unsupported_reason: ''
     calc_note: 按单个目标计算，未乘目标数；未计入天赋攻击力加成：领袖 +10%
+    formula_note: ''
   citation: *id001
 - id: char_180_amgoat
   name: 艾雅法拉
@@ -53,6 +59,9 @@ operators:
   res_value: 0.2
   hp: 1743.0
   attack_interval: 1.6
+  trait_atk_bonus: 0.0
+  trait_charge_time: 0.0
+  talent_atk_scale: 1.0
   skills:
   - id: skchr_amgoat_3
     operator_id: char_180_amgoat
@@ -68,9 +77,12 @@ operators:
     hits: 1
     duration: null
     extra_components: []
+    trait_up: 1.0
+    per_kill_reduce: 0.0
     calc_supported: true
     unsupported_reason: ''
     calc_note: 按单个目标计算，未乘目标数；未计入天赋攻击力加成：炎息 +14%
+    formula_note: ''
   citation: *id001
 - id: char_103_angel
   name: 能天使
@@ -85,6 +97,9 @@ operators:
   res_value: 0.0
   hp: 1673.0
   attack_interval: 1.0
+  trait_atk_bonus: 0.0
+  trait_charge_time: 0.0
+  talent_atk_scale: 1.0
   skills:
   - id: skchr_angel_3
     operator_id: char_103_angel
@@ -100,9 +115,12 @@ operators:
     hits: 5
     duration: null
     extra_components: []
+    trait_up: 1.0
+    per_kill_reduce: 0.0
     calc_supported: true
     unsupported_reason: ''
     calc_note: 未计入天赋攻击力加成：天使的祝福 +6%；按 5 段计算
+    formula_note: ''
   citation: *id001
 - id: char_350_surtr
   name: 史尔特尔
@@ -117,6 +135,9 @@ operators:
   res_value: 0.15
   hp: 2916.0
   attack_interval: 1.25
+  trait_atk_bonus: 0.0
+  trait_charge_time: 0.0
+  talent_atk_scale: 1.0
   skills:
   - id: skchr_surtr_3
     operator_id: char_350_surtr
@@ -132,9 +153,12 @@ operators:
     hits: 1
     duration: 60.0
     extra_components: []
+    trait_up: 1.0
+    per_kill_reduce: 0.0
     calc_supported: true
     unsupported_reason: ''
     calc_note: 按单个目标计算，未乘目标数
+    formula_note: ''
   citation: *id001
 - id: char_4064_mlynar
   name: 玛恩纳
@@ -149,6 +173,9 @@ operators:
   res_value: 0.15
   hp: 3906.0
   attack_interval: 1.2
+  trait_atk_bonus: 2.0
+  trait_charge_time: 40.0
+  talent_atk_scale: 1.1
   skills:
   - id: skchr_mlynar_3
     operator_id: char_4064_mlynar
@@ -164,9 +191,18 @@ operators:
     hits: 1
     duration: null
     extra_components: []
-    calc_supported: false
-    unsupported_reason: 技能含元素/天赋倍率等未纳入的机制
-    calc_note: ''
+    trait_up: 2.0
+    per_kill_reduce: 0.1
+    calc_supported: true
+    unsupported_reason: ''
+    calc_note: 按单个目标计算，未乘目标数；特性倍率 k 默认按满特性 2 计算；每击杀一名敌人 k -10%；未计入卡西米尔干员附加真实伤害
+    formula_note: 'k = 满特性 2；未蓄满 k = 2 × t / 40；每击杀一名敌人 k −10%（最低 1.0）
+
+      Atk_final(k) = 355 × (1 + 2 × k)
+
+      单目标伤害 = max(Atk_final × 1.98 − DEF, 0.05 × Atk_final)
+
+      其中 1.98 = 技能倍率 1.8 × 天赋「游侠」1.1'
   citation: *id001
 - id: char_377_gdglow
   name: 澄闪
@@ -181,6 +217,9 @@ operators:
   res_value: 0.2
   hp: 1480.0
   attack_interval: 1.3
+  trait_atk_bonus: 0.0
+  trait_charge_time: 6.0
+  talent_atk_scale: 1.0
   skills:
   - id: skchr_gdglow_3
     operator_id: char_377_gdglow
@@ -196,7 +235,10 @@ operators:
     hits: 1
     duration: null
     extra_components: []
+    trait_up: 1.0
+    per_kill_reduce: 0.0
     calc_supported: false
     unsupported_reason: 技能含召唤/浮游/陷阱/停止攻击/元素/持续伤害等未纳入的机制
     calc_note: ''
+    formula_note: ''
   citation: *id001

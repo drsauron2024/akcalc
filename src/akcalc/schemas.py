@@ -78,6 +78,9 @@ class SkillRecord(BaseModel):
     hits: int = 1
     duration: float | None = None
     extra_components: list[DamageComponent] = Field(default_factory=list)
+    trait_up: float = 1.0
+    per_kill_reduce: float = 0.0
+    formula_note: str = ""
     calc_supported: bool = True
     unsupported_reason: str = ""
     calc_note: str = ""
@@ -98,6 +101,9 @@ class OperatorRecord(BaseModel):
     res_value: float = 0
     hp: float = 0
     attack_interval: float = 1.0
+    trait_atk_bonus: float = 0.0
+    trait_charge_time: float = 0.0
+    talent_atk_scale: float = 1.0
     skills: list[SkillRecord] = Field(default_factory=list)
     citation: Citation | None = None
 

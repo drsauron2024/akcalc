@@ -130,6 +130,8 @@ class Agent:
             result = append_damage_components(result, skill.extra_components, plan.variable_bindings)
         if skill and skill.calc_note:
             result.warnings.append(f"计算口径：{skill.calc_note}")
+        if skill and skill.formula_note:
+            result.warnings.append(f"参数化公式：\n{skill.formula_note}")
 
         # Apply fragile / damage reduction as a post-processing chain when present.
         fragile = float(plan.variable_bindings.get("fragile", 0.0) or 0.0)
@@ -235,6 +237,10 @@ class Agent:
             lines.extend(["", "【适用条件】"] + [f"- {a}" for a in card.assumptions])
         if card.notes:
             lines.extend(["", f"【说明】{card.notes}"])
+        op, _ = self.planner.resolve_operator(query)
+        skill = self.planner.resolve_skill(query, op)
+        if skill and skill.formula_note:
+            lines.extend(["", f"【{op.name} · {skill.name} 参数化公式】", skill.formula_note])
         if related:
             lines.extend(["", "【相关公式】" + "；".join(related)])
         lines.extend(["", f"【出处】{card.citation.title} — {card.citation.section}", card.citation.url])

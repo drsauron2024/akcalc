@@ -68,7 +68,7 @@ python scripts/build_semantica_artifacts.py
 ## 5. 人工校订
 
 - `data/curation/formulas.yaml`：8 张公式卡，表达式、变量、适用条件、出处与示例均为人工整理；
-- `data/curation/operators_all.yaml`：421 名可获取干员、967 个技能，按黑板参数自动标记 `calc_supported`（666 个可计算）；
+- `data/curation/operators_all.yaml`：421 名可获取干员、967 个技能，按黑板参数自动标记 `calc_supported`（667 个可计算）；
 - `data/curation/operators.yaml`：20 题基准使用的 6 名干员子集；技能等级取 `levels[9]`（M3/最高等级）；
 - `atk_final` 卡采用“ATK% 加算”的简化式，并在字段与文档中标注适用范围；复杂跨天赋叠加不在当前范围。
 

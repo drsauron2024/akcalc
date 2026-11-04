@@ -132,6 +132,29 @@ class Planner:
         v = float(value)
         return v / 100.0 if v > 1 else v
 
+    @staticmethod
+    def _trait_multiplier(query: str, op: OperatorRecord, skill) -> float:
+        """Current trait multiplier k for time-varying ATK traits.
+
+        k = trait_up at full charge; scales linearly with charge time and
+        decreases per kill. If the question does not specify, assume full charge
+        and let the answer state that assumption.
+        """
+        if op.trait_atk_bonus <= 0:
+            return 1.0
+        trait_up = float(getattr(skill, "trait_up", 1.0) or 1.0)
+        per_kill = float(getattr(skill, "per_kill_reduce", 0.0) or 0.0)
+        k = trait_up
+        m = re.search(r"(?:蓄力|部署)\s*(\d+(?:\.\d+)?)\s*秒", query)
+        if m and op.trait_charge_time > 0:
+            k = trait_up * min(float(m.group(1)) / op.trait_charge_time, 1.0)
+        elif any(word in query for word in ["未蓄力", "刚部署", "未充能", "0秒"]):
+            k = 0.0
+        m = re.search(r"击杀\s*(\d+)\s*(?:个|名|只)?", query)
+        if m and per_kill > 0:
+            k = max(1.0, k - per_kill * int(m.group(1)))
+        return max(0.0, k)
+
     def extract_variables(
         self, query: str, formula_id: str, op: OperatorRecord | None, skill
     ) -> dict[str, float]:
@@ -198,11 +221,16 @@ class Planner:
             v["damage_per_hit"] = float(m.group(1))
 
         if op and skill:
+            trait_mult = self._trait_multiplier(q, op, skill)
+            trait_bonus = op.trait_atk_bonus * trait_mult
             if formula_id in {"physical_damage", "arts_damage", "true_damage"}:
                 if "atk_final" not in v:
                     bonus = v.get("atk_pct", skill.atk_bonus)
-                    v["atk_final"] = op.atk * (1.0 + bonus)
-                v.setdefault("atk_multiplier", skill.atk_multiplier)
+                    v["atk_final"] = op.atk * (1.0 + bonus + trait_bonus)
+                if op.trait_atk_bonus:
+                    v["trait_multiplier"] = trait_mult
+                    v["trait_atk_bonus"] = trait_bonus
+                v.setdefault("atk_multiplier", skill.atk_multiplier * op.talent_atk_scale)
                 v.setdefault("hits", float(skill.hits))
             elif formula_id == "attack_interval":
                 v.setdefault("atk_time_base", op.attack_interval)
@@ -210,7 +238,9 @@ class Planner:
                 v.setdefault("aspd_flat", skill.aspd_flat)
             elif formula_id == "atk_final":
                 v.setdefault("atk_base", op.atk)
-                v.setdefault("atk_pct", skill.atk_bonus)
+                v.setdefault("atk_pct", skill.atk_bonus + trait_bonus)
+                if op.trait_atk_bonus:
+                    v["trait_multiplier"] = trait_mult
             elif formula_id == "healing":
                 v.setdefault("atk_final", op.atk)
                 v.setdefault("heal_multiplier", skill.heal_multiplier)
@@ -429,9 +459,12 @@ class Planner:
         if card.id == "dps" and op:
             numeric_intent = True
 
+        asks_formula = any(
+            word in query for word in ["公式", "怎么算", "怎么计算", "如何计算", "原理"]
+        )
         # A concept question ("物理伤害怎么算？") has no numbers and is a lookup,
         # even though the formula's required variables are not bound.
-        if missing and numeric_intent:
+        if missing and numeric_intent and not asks_formula:
             return Plan(
                 intent=Intent.CLARIFY,
                 formula_id=formula_id,
@@ -442,7 +475,9 @@ class Planner:
                 reasoning="公式已匹配，但缺少必需变量",
             )
 
-        intent = Intent.CALCULATE if numeric_intent else Intent.FORMULA_LOOKUP
+        intent = (
+            Intent.CALCULATE if numeric_intent and not asks_formula else Intent.FORMULA_LOOKUP
+        )
         return Plan(
             intent=intent,
             formula_id=formula_id,
